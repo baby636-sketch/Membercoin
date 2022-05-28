@@ -224,6 +224,11 @@ public:
         // uint256S("0x4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b"));
 
         // List of Member compatible seeders
+        vSeeds.push_back(CDNSSeedData("member.cash", "member.cash", true));
+        vSeeds.push_back(CDNSSeedData("asia.member.cash", "asia.member.cash", true));
+        vSeeds.push_back(CDNSSeedData("europe.member.cash", "europe.member.cash", true));
+        vSeeds.push_back(CDNSSeedData("us.member.cash", "us.member.cash", true));
+
         // vSeeds.push_back(CDNSSeedData("bitcoinunlimited.info", "btccash-seeder.bitcoinunlimited.info", true));
         // vSeeds.push_back(CDNSSeedData("bitcoinforks.org", "seed-bch.bitcoinforks.org", true));
         // vSeeds.push_back(CDNSSeedData("bchd.cash", "seed.bchd.cash", true));

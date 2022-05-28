@@ -643,12 +643,12 @@ UniValue mkblocktemplate(const UniValue &params,
 
     if (!unsafeGetBlockTemplate.Value())
     {
-        //if (vNodes.empty())
-        //    throw JSONRPCError(RPC_CLIENT_NOT_CONNECTED, "Member is not connected!");
+        if (vNodes.empty())
+            throw JSONRPCError(RPC_CLIENT_NOT_CONNECTED, "Member is not connected!");
 
 
-        //if (IsInitialBlockDownload())
-        //    throw JSONRPCError(RPC_CLIENT_IN_INITIAL_DOWNLOAD, "Member is downloading blocks...");
+        if (IsInitialBlockDownload())
+            throw JSONRPCError(RPC_CLIENT_IN_INITIAL_DOWNLOAD, "Member is downloading blocks...");
     }
 
     static unsigned int nTransactionsUpdatedLast;
