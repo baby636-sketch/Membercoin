@@ -148,7 +148,7 @@ void DebugMessageHandler(QtMsgType type, const QMessageLogContext &context, cons
     LOG(category, "GUI: %s\n", msg.toStdString());
 }
 
-/** Class encapsulating Bitcoin startup and shutdown.
+/** Class encapsulating Member startup and shutdown.
  * Allows running startup and shutdown in a different thread from the UI thread.
  */
 class BitcoinCore : public QObject
@@ -171,7 +171,7 @@ private:
     void handleRunawayException(const std::exception *e);
 };
 
-/** Main Bitcoin application object */
+/** Main Member application object */
 class BitcoinApplication : public QApplication
 {
     Q_OBJECT
@@ -481,7 +481,7 @@ void BitcoinApplication::shutdownResult(int retval)
 void BitcoinApplication::handleRunawayException(const QString &message)
 {
     QMessageBox::critical(0, "Runaway exception",
-        BitcoinGUI::tr("A fatal error occurred. Bitcoin can no longer continue safely and will quit.") +
+        BitcoinGUI::tr("A fatal error occurred. Member can no longer continue safely and will quit.") +
             QString("\n\n") + message);
     ::exit(EXIT_FAILURE);
 }
@@ -722,7 +722,7 @@ int main(int argc, char *argv[])
     if (!Intro::pickDataDirectory())
         return EXIT_FAILURE;
 
-    /// 7. Determine availability of data directory and parse bitcoin.conf
+    /// 7. Determine availability of data directory and parse membercoin.conf
     /// - Do not call GetDataDir(true) before this step finishes
     fs::path dataDir;
     std::string msg;

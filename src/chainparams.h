@@ -65,17 +65,17 @@ struct CCheckpointData
 
 enum
 {
-    DEFAULT_MAINNET_PORT = 8333,
-    DEFAULT_TESTNET_PORT = 18333,
-    DEFAULT_NOLNET_PORT = 9333,
-    DEFAULT_REGTESTNET_PORT = 18444,
-    DEFAULT_TESTNET4_PORT = 28333,
-    DEFAULT_SCALENET_PORT = 38333,
+    DEFAULT_MAINNET_PORT = 8368,
+    DEFAULT_TESTNET_PORT = 18368,
+    DEFAULT_NOLNET_PORT = 9368,
+    DEFAULT_REGTESTNET_PORT = 18368,
+    DEFAULT_TESTNET4_PORT = 28368,
+    DEFAULT_SCALENET_PORT = 38368,
 };
 
 /**
  * CChainParams defines various tweakable parameters of a given instance of the
- * Bitcoin system. There are three: the main network on which people trade goods
+ * Member system. There are three: the main network on which people trade goods
  * and services, the public test network which gets reset from time to time and
  * a regression test mode which is intended for private networks only. It has
  * minimal difficulty to ensure that blocks can be found instantly.

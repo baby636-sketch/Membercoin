@@ -60,7 +60,7 @@ static const bool DEFAULT_SEND_FREE_TRANSACTIONS = false;
 //! -txconfirmtarget default
 static const unsigned int DEFAULT_TX_CONFIRM_TARGET = 2;
 //! Largest (in bytes) free transaction we're willing to creat
-//! We can allow a maximum sized free transaction in the Bitcoin Cash Network.
+//! We can allow a maximum sized free transaction in the Member Network.
 static const unsigned int MAX_FREE_TRANSACTION_CREATE_SIZE = MAX_STANDARD_TX_SIZE;
 static const bool DEFAULT_WALLETBROADCAST = true;
 
@@ -894,14 +894,14 @@ public:
     bool IsMine(const CTransaction &tx) const;
 
     CAmount GetDebit(const CTxIn &txin, const isminefilter &filter) const;
-    CAmount GetCredit(const CTxOut &txout, const isminefilter &filter) const;
+    CAmount GetCredit(const CTxOut& txout, const isminefilter& filter, const int& nDepth) const;
     bool IsChange(const CTxOut &txout) const;
     CAmount GetChange(const CTxOut &txout) const;
 
     /** should probably be renamed to IsRelevantToMe */
     bool IsFromMe(const CTransaction &tx) const;
     CAmount GetDebit(const CTransaction &tx, const isminefilter &filter) const;
-    CAmount GetCredit(const CTransaction &tx, const isminefilter &filter) const;
+    CAmount GetCredit(const CTransaction& tx, const isminefilter& filter, const int& nDepth) const;
     CAmount GetChange(const CTransaction &tx) const;
     void SetBestChain(const CBlockLocator &loc);
 

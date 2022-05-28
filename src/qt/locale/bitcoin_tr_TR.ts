@@ -66,12 +66,12 @@
         <translation>Alış adresleri</translation>
     </message>
     <message>
-        <source>These are your Bitcoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Bunlar ödeme gönderebileceğiniz Bitcoin adreslerinizdir. Para göndermeden önce mutlaka alıcı adresini ve tutarı kontrol edin.</translation>
+        <source>These are your Member addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>Bunlar ödeme gönderebileceğiniz Member adreslerinizdir. Para göndermeden önce mutlaka alıcı adresini ve tutarı kontrol edin.</translation>
     </message>
     <message>
-        <source>These are your Bitcoin addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>Bunlar ödeme alabileceğiniz Bitcoin adreslerinizdir. Her işlem için yeni bir adres kullanmanız önerilir.</translation>
+        <source>These are your Member addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <translation>Bunlar ödeme alabileceğiniz Member adreslerinizdir. Her işlem için yeni bir adres kullanmanız önerilir.</translation>
     </message>
     <message>
         <source>Copy &amp;Label</source>

@@ -86,8 +86,8 @@ static int AppInitRawTx(int argc, char *argv[])
             return false;
 
         strUsage = "\n" + _("Usage:") + "\n" + "  bitcoin-tx [options] <hex-tx> [commands]  " +
-                   _("Update hex-encoded bitcoin transaction") + "\n" + "  bitcoin-tx [options] -create [commands]   " +
-                   _("Create hex-encoded bitcoin transaction") + "\n" + "\n";
+                   _("Update hex-encoded member transaction") + "\n" + "  bitcoin-tx [options] -create [commands]   " +
+                   _("Create hex-encoded member transaction") + "\n" + "\n";
 
         fprintf(stdout, "%s", strUsage.c_str());
 
@@ -706,7 +706,7 @@ static int CommandLineRawTx(int argc, char *argv[])
             if (argc < 2)
                 throw runtime_error("too few parameters");
 
-            // param: hex-encoded bitcoin transaction
+            // param: hex-encoded member transaction
             string strHexTx(argv[1]);
             if (strHexTx == "-") // "-" implies standard input
                 strHexTx = readStdin();

@@ -58,12 +58,12 @@
         <translation>Adresses de réception</translation>
     </message>
     <message>
-        <source>These are your Bitcoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Voici vos adresses Bitcoin qui vous permettent d'envoyer des paiements.  Vérifiez toujours le montant et l'adresse de réception avant d'envoyer des pièces.</translation>
+        <source>These are your Member addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>Voici vos adresses Member qui vous permettent d'envoyer des paiements.  Vérifiez toujours le montant et l'adresse de réception avant d'envoyer des pièces.</translation>
     </message>
     <message>
-        <source>These are your Bitcoin addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>Voici vos adresses Bitcoin qui vous permettent de recevoir des paiements.  Il est recommandé d'utiliser une nouvelle adresse de réception pour chaque transaction</translation>
+        <source>These are your Member addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <translation>Voici vos adresses Member qui vous permettent de recevoir des paiements.  Il est recommandé d'utiliser une nouvelle adresse de réception pour chaque transaction</translation>
     </message>
     <message>
         <source>Copy &amp;Label</source>
@@ -303,7 +303,7 @@ Réessayez.</translation>
         <translation>Réindexer les blocs sur le disque...</translation>
     </message>
     <message>
-        <source>Send coins to a Bitcoin address</source>
+        <source>Send coins to a Member address</source>
         <translation>Envoyer des pièces à une adresse Bitcoin</translation>
     </message>
     <message>
@@ -359,8 +359,8 @@ Réessayez.</translation>
         <translation>Crypter les clé privées qui appartiennent votre portefeuille</translation>
     </message>
     <message>
-        <source>Sign messages with your Bitcoin addresses to prove you own them</source>
-        <translation>Signer vos messages avec vos adresses Bitcoin pour prouver que vous les détenez</translation>
+        <source>Sign messages with your Member addresses to prove you own them</source>
+        <translation>Signer vos messages avec vos adresses Member pour prouver que vous les détenez</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -407,7 +407,7 @@ Réessayez.</translation>
         <translation>&amp;Options de ligne de commande</translation>
     </message>
     <message numerus="yes">
-        <source>%n active connection(s) to Bitcoin network</source>
+        <source>%n active connection(s) to Member network</source>
         <translation><numerusform>%n connexion active au réseau Bitcoin</numerusform><numerusform>%n connexions actives au réseau Bitcoin</numerusform></translation>
     </message>
     <message>
@@ -770,8 +770,8 @@ Réessayez.</translation>
         <translation>L'adresse fournie « %1 » est déjà présente dans le carnet d'adresses.</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid Bitcoin address.</source>
-        <translation>L'adresse entrée "%1" n'est pas une adresse Bitcoin valide.</translation>
+        <source>The entered address "%1" is not a valid Member address.</source>
+        <translation>L'adresse entrée "%1" n'est pas une adresse Member valide.</translation>
     </message>
     <message>
         <source>Could not unlock wallet.</source>
@@ -953,8 +953,8 @@ Réessayez.</translation>
         <translation>Expert</translation>
     </message>
     <message>
-        <source>Automatically open the Bitcoin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>Ouvrir le port du client Bitcoin automatiquement sur le routeur. Cela ne fonctionne que si votre routeur supporte l'UPnP et si la fonctionnalité est activée.</translation>
+        <source>Automatically open the Member client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>Ouvrir le port du client Member automatiquement sur le routeur. Cela ne fonctionne que si votre routeur supporte l'UPnP et si la fonctionnalité est activée.</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
@@ -1145,8 +1145,8 @@ Réessayez.</translation>
         <translation>Montant</translation>
     </message>
     <message>
-        <source>Enter a Bitcoin address (e.g. %1)</source>
-        <translation>Entrer une adresse Bitcoin (e.g. %1)</translation>
+        <source>Enter a Member address (e.g. %1)</source>
+        <translation>Entrer une adresse Member (e.g. %1)</translation>
     </message>
     <message>
         <source>%1 d</source>
@@ -1723,8 +1723,8 @@ Réessayez.</translation>
         <translation>Payer seulement les frais obligatoire de %1</translation>
     </message>
     <message>
-        <source>Warning: Invalid Bitcoin address</source>
-        <translation>Attention: Adresse Bitcoin Invalide</translation>
+        <source>Warning: Invalid Member address</source>
+        <translation>Attention: Adresse Member Invalide</translation>
     </message>
     <message>
         <source>(no label)</source>

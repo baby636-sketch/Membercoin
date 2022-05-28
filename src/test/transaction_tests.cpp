@@ -310,7 +310,7 @@ BOOST_AUTO_TEST_CASE(test_Get)
 
     BOOST_CHECK(AreInputsStandard(MakeTransactionRef(CTransaction(t1)), coins, false));
     BOOST_CHECK(AreInputsStandard(MakeTransactionRef(CTransaction(t1)), coins, true));
-    BOOST_CHECK_EQUAL(coins.GetValueIn(t1), (50 + 21 + 22) * CENT);
+    BOOST_CHECK_EQUAL(coins.GetValueIn(t1,0), (50 + 21 + 22) * CENT);
 }
 
 

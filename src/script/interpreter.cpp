@@ -17,7 +17,7 @@
 #include "script/script_error.h"
 #include "uint256.h"
 #include "util.h"
-const std::string strMessageMagic = "Bitcoin Signed Message:\n";
+const std::string strMessageMagic = "Member Signed Message:\n";
 
 extern uint256 SignatureHashLegacy(const CScript &scriptCode,
     const CTransaction &txTo,

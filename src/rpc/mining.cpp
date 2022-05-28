@@ -221,7 +221,7 @@ UniValue generatetoaddress(const UniValue &params, bool fHelp)
                             "\nMine blocks immediately to a specified address (before the RPC call returns)\n"
                             "\nArguments:\n"
                             "1. numblocks    (numeric, required) How many blocks are generated immediately.\n"
-                            "2. address    (string, required) The address to send the newly generated bitcoin to.\n"
+                            "2. address    (string, required) The address to send the newly generated memberto.\n"
                             "3. maxtries     (numeric, optional) How many iterations to try (default = 1000000).\n"
                             "\nResult\n"
                             "[ blockhashes ]     (array) hashes of blocks generated\n"
@@ -643,11 +643,12 @@ UniValue mkblocktemplate(const UniValue &params,
 
     if (!unsafeGetBlockTemplate.Value())
     {
-        if (vNodes.empty())
-            throw JSONRPCError(RPC_CLIENT_NOT_CONNECTED, "Bitcoin is not connected!");
+        //if (vNodes.empty())
+        //    throw JSONRPCError(RPC_CLIENT_NOT_CONNECTED, "Member is not connected!");
 
-        if (IsInitialBlockDownload())
-            throw JSONRPCError(RPC_CLIENT_IN_INITIAL_DOWNLOAD, "Bitcoin is downloading blocks...");
+
+        //if (IsInitialBlockDownload())
+        //    throw JSONRPCError(RPC_CLIENT_IN_INITIAL_DOWNLOAD, "Member is downloading blocks...");
     }
 
     static unsigned int nTransactionsUpdatedLast;

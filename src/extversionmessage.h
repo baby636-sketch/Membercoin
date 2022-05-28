@@ -56,7 +56,7 @@ public:
 
 
 /*!
-  Bitcoin Cash extended version message implementation.
+  Member extended version message implementation.
 
   This version message de-/serializes the same fields as the version
   message format as in the BU BCH implementation as of July 2018,

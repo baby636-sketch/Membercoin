@@ -1119,11 +1119,16 @@ bool CWallet::IsMine(const CTransaction &tx) const
     return false;
 }
 
-CAmount CWallet::GetCredit(const CTxOut &txout, const isminefilter &filter) const
+CAmount CWallet::GetCredit(const CTxOut &txout, const isminefilter &filter, const int& depthInMainChain) const
 {
-    if (!MoneyRange(txout.nValue))
+    //if (!MoneyRange(txout.nValue))
+    //    throw std::runtime_error("CWallet::GetCredit(): value out of range");
+    //return ((IsMine(txout) & filter) ? txout.nValue : 0);
+
+    CAmount afterInterest=txout.GetValueWithInterest((chainActive.Height()+1)-depthInMainChain,chainActive.Height()+1);
+    if (!MoneyRange(afterInterest))
         throw std::runtime_error("CWallet::GetCredit(): value out of range");
-    return ((IsMine(txout) & filter) ? txout.nValue : 0);
+    return ((IsMine(txout) & filter) ? afterInterest : 0);
 }
 
 bool CWallet::IsChange(const CTxOut &txout) const
@@ -1168,12 +1173,12 @@ CAmount CWallet::GetDebit(const CTransaction &tx, const isminefilter &filter) co
     return nDebit;
 }
 
-CAmount CWallet::GetCredit(const CTransaction &tx, const isminefilter &filter) const
+CAmount CWallet::GetCredit(const CTransaction& tx, const isminefilter& filter, const int& nDepth) const
 {
     CAmount nCredit = 0;
     for (const CTxOut &txout : tx.vout)
     {
-        nCredit += GetCredit(txout, filter);
+        nCredit += GetCredit(txout, filter, nDepth);
         if (!MoneyRange(nCredit))
             throw std::runtime_error("CWallet::GetCredit(): value out of range");
     }
@@ -1589,7 +1594,7 @@ CAmount CWalletTx::GetCredit(const isminefilter &filter) const
             credit += nCreditCached;
         else
         {
-            nCreditCached = pwallet->GetCredit(*this, ISMINE_SPENDABLE);
+            nCreditCached = pwallet->GetCredit(*this, ISMINE_SPENDABLE, GetDepthInMainChain());
             fCreditCached = true;
             credit += nCreditCached;
         }
@@ -1600,7 +1605,7 @@ CAmount CWalletTx::GetCredit(const isminefilter &filter) const
             credit += nWatchCreditCached;
         else
         {
-            nWatchCreditCached = pwallet->GetCredit(*this, ISMINE_WATCH_ONLY);
+            nWatchCreditCached = pwallet->GetCredit(*this, ISMINE_WATCH_ONLY, GetDepthInMainChain());
             fWatchCreditCached = true;
             credit += nWatchCreditCached;
         }
@@ -1614,7 +1619,7 @@ CAmount CWalletTx::GetImmatureCredit(bool fUseCache) const
     {
         if (fUseCache && fImmatureCreditCached)
             return nImmatureCreditCached;
-        nImmatureCreditCached = pwallet->GetCredit(*this, ISMINE_SPENDABLE);
+        nImmatureCreditCached = pwallet->GetCredit(*this, ISMINE_SPENDABLE, GetDepthInMainChain());
         fImmatureCreditCached = true;
         return nImmatureCreditCached;
     }
@@ -1641,7 +1646,7 @@ CAmount CWalletTx::GetAvailableCredit(bool fUseCache) const
         if (!pwallet->IsSpent(hashTx, i))
         {
             const CTxOut &txout = vout[i];
-            nCredit += pwallet->GetCredit(txout, ISMINE_SPENDABLE);
+            nCredit += pwallet->GetCredit(txout, ISMINE_SPENDABLE, GetDepthInMainChain());
             if (!MoneyRange(nCredit))
                 throw std::runtime_error("CWalletTx::GetAvailableCredit(false) : value out of range");
         }
@@ -1658,7 +1663,7 @@ CAmount CWalletTx::GetImmatureWatchOnlyCredit(const bool &fUseCache) const
     {
         if (fUseCache && fImmatureWatchCreditCached)
             return nImmatureWatchCreditCached;
-        nImmatureWatchCreditCached = pwallet->GetCredit(*this, ISMINE_WATCH_ONLY);
+        nImmatureWatchCreditCached = pwallet->GetCredit(*this, ISMINE_WATCH_ONLY, GetDepthInMainChain());
         fImmatureWatchCreditCached = true;
         return nImmatureWatchCreditCached;
     }
@@ -1684,7 +1689,7 @@ CAmount CWalletTx::GetAvailableWatchOnlyCredit(const bool &fUseCache) const
         if (!pwallet->IsSpent(GetHash(), i))
         {
             const CTxOut &txout = vout[i];
-            nCredit += pwallet->GetCredit(txout, ISMINE_WATCH_ONLY);
+            nCredit += pwallet->GetCredit(txout, ISMINE_WATCH_ONLY, GetDepthInMainChain());
             if (!MoneyRange(nCredit))
                 throw std::runtime_error("CWalletTx::GetAvailableCredit(false) : value out of range");
         }
@@ -2034,7 +2039,7 @@ bool CWallet::SelectCoinsMinConf(const CAmount &nTargetValue,
             continue;
 
         int i = output.i;
-        CAmount n = pcoin->vout[i].nValue;
+        CAmount n = pcoin->vout[i].GetValueWithInterest((chainActive.Height()+1)-pcoin->GetDepthInMainChain(),chainActive.Height()+1);
 
         pair<CAmount, pair<const CWalletTx *, unsigned int> > coin = make_pair(n, make_pair(pcoin, i));
 
@@ -3162,7 +3167,7 @@ std::map<CTxDestination, CAmount> CWallet::GetAddressBalances()
                 if (!ExtractDestination(pcoin->vout[i].scriptPubKey, addr))
                     continue;
 
-                CAmount n = IsSpent(walletEntry.first, i) ? 0 : pcoin->vout[i].nValue;
+                CAmount n = IsSpent(walletEntry.first, i) ? 0 : pcoin->vout[i].GetValueWithInterest((chainActive.Height()+1)-pcoin->GetDepthInMainChain(),chainActive.Height()+1);
 
                 if (!balances.count(addr))
                     balances[addr] = 0;

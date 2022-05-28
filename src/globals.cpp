@@ -327,7 +327,7 @@ CTweakRef<unsigned int> maxDataCarrierTweak("mining.dataCarrierSize",
     &MaxDataCarrierValidator);
 
 CTweakRef<uint64_t> miningForkTime("consensus.forkNov2020Time",
-    "Time in seconds since the epoch to initiate the Bitcoin Cash protocol upgraded scheduled on 15th May 2020.  A "
+    "Time in seconds since the epoch to initiate the Member protocol upgraded scheduled on 15th May 2020.  A "
     "setting of 1 will turn on the fork at the appropriate time.",
     &nMiningForkTime,
     &ForkTimeValidator); // Sunday Nov 15 12:00:00 UTC 2020
@@ -369,12 +369,12 @@ CTweakRef<int> maxConnectionsTweak("net.maxConnections",
 CTweakRef<int> minXthinNodesTweak("net.minXthinNodes",
     strprintf("Minimum number of outbound xthin capable nodes to connect to (default: %d)", nMinXthinNodes),
     &nMinXthinNodes);
-// When should I request a tx from someone else (in microseconds). cmdline/bitcoin.conf: -txretryinterval
+// When should I request a tx from someone else (in microseconds). cmdline/membercoin.conf: -txretryinterval
 CTweakRef<unsigned int> triTweak("net.txRetryInterval",
     strprintf("How long to wait in microseconds before requesting a transaction from another source (default: %d)",
                                      MIN_TX_REQUEST_RETRY_INTERVAL),
     &MIN_TX_REQUEST_RETRY_INTERVAL);
-// When should I request a block from someone else (in microseconds). cmdline/bitcoin.conf: -blkretryinterval
+// When should I request a block from someone else (in microseconds). cmdline/membercoin.conf: -blkretryinterval
 CTweakRef<unsigned int> briTweak("net.blockRetryInterval",
     strprintf("How long to wait in microseconds before requesting a block from another source (default: %d)",
                                      MIN_BLK_REQUEST_RETRY_INTERVAL),

@@ -540,7 +540,7 @@ std::string LicenseInfo()
            "\n\n" +
            FormatParagraph(strprintf(_("Portions Copyright (C) 2009-%i The Bitcoin Core Developers"), COPYRIGHT_YEAR)) +
            "\n\n" +
-           FormatParagraph(strprintf(_("Portions Copyright (C) 2014-%i The Bitcoin XT Developers"), COPYRIGHT_YEAR)) +
+           FormatParagraph(strprintf(_("Portions Copyright (C) 2014-%i The Member XT Developers"), COPYRIGHT_YEAR)) +
            "\n\n" + "\n" + FormatParagraph(_("This is experimental software.")) + "\n" + "\n" +
            FormatParagraph(_("Distributed under the MIT software license, see the accompanying file COPYING or "
                              "<http://www.opensource.org/licenses/mit-license.php>.")) +
@@ -988,8 +988,8 @@ extern UniValue setminercomment(const UniValue &params, bool fHelp)
                             "\nSet the comment that will be put into each mined block's coinbase\n transaction after "
                             "the BCH Unlimited parameters.\n Comments that are too long will be truncated."
                             "\nExamples:\n" +
-                            HelpExampleCli("setminercomment", "\"bitcoin is fundamentally emergent consensus\"") +
-                            HelpExampleRpc("setminercomment", "\"bitcoin is fundamentally emergent consensus\""));
+                            HelpExampleCli("setminercomment", "\"member is fundamentally emergent consensus\"") +
+                            HelpExampleRpc("setminercomment", "\"member is fundamentally emergent consensus\""));
 
     minerComment = params[0].getValStr();
     return NullUniValue;
@@ -1793,7 +1793,7 @@ UniValue getminingcandidate(const UniValue &params, bool fHelp)
             "\nArguments:\n"
             "1. \"coinbasesize\" (int, optional) Get a fixed size coinbase transaction.\n"
             "                                  Default: null (null indicates unspecified / use daemon defaults)\n"
-            "2. \"address\"      (string, optional) The address to send the newly generated bitcoin to.\n"
+            "2. \"address\"      (string, optional) The address to send the newly generated memberto.\n"
             "                                     Default: an address in daemon's wallet.\n" +
             HelpExampleCli("getminingcandidate", "") + HelpExampleCli("getminingcandidate", "1000") +
             HelpExampleCli("getminingcandidate", "1000 bchtest:qq9rw090p2eu9drv6ptztwx4ghpftwfa0gyqvlvx2q") +
@@ -1930,6 +1930,18 @@ UniValue submitminingsolution(const UniValue &params, bool fHelp)
         block->nVersion = version.get_int(); // version signed 32 bit int
     }
 
+    //niValue nStartLocation = rcvd["nStartLocation"];
+    //if (!nStartLocation.isNull())
+    //{
+    //    block->nStartLocation = nStartLocation.get_int64(); // version signed 32 bit int
+    //}
+
+    //UniValue nFinalCalculation = rcvd["nFinalCalculation"];
+    //if (!nFinalCalculation.isNull())
+    //{
+    //    block->nFinalCalculation = nFinalCalculation.get_int64(); // version signed 32 bit int
+    //}
+
     // Coinbase:
     CTransaction coinbase;
     UniValue cbhex = rcvd["coinbase"];
@@ -1949,6 +1961,10 @@ UniValue submitminingsolution(const UniValue &params, bool fHelp)
         uint256 t = block->vtx[0]->GetHash();
         block->hashMerkleRoot = CalculateMerkleRoot(t, merkleProof);
     }
+
+    //printf("coinbase:%s\n",tmpstr);
+    //printf("id:%s\n",params["id"]);
+    //printf("%s\n", block->ToString());
 
     UniValue uvsub = SubmitBlock(*block); // returns string on failure
     RmOldMiningCandidates();

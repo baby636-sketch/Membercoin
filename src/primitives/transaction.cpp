@@ -11,6 +11,8 @@
 #include "tinyformat.h"
 #include "utilstrencodings.h"
 
+#include "arith_uint256.h"
+
 
 std::string COutPoint::ToString() const { return strprintf("COutPoint(%s, %u)", hash.ToString().substr(0, 10), n); }
 CTxIn::CTxIn(COutPoint prevoutIn, CScript scriptSigIn, uint32_t nSequenceIn)
@@ -186,4 +188,68 @@ bool CTransaction::HasData(uint32_t dataID) const
         }
     }
     return false;
+}
+
+CAmount CTxOut::GetValueWithInterest(int outputBlockHeight, int valuationHeight) const{
+
+    return GetInterest(nValue, outputBlockHeight, valuationHeight);
+    //return nValue;
+}
+
+static int ONEDAY=1108;
+static int MAXINTERESTPERIOD=ONEDAY*365;
+static int MAXINTERESTPERIODPLUSONE=ONEDAY*365+1;
+
+static uint64_t rateTable[1108*365+1];
+
+CAmount getRateForAmount(int periods, CAmount theAmount){
+
+    //CBigNum amount256(theAmount);
+    //CBigNum rate256(rateTable[periods]);
+    //CBigNum rate0256(rateTable[0]);
+    //CBigNum result=(amount256*rate256)/rate0256;
+    //return  result.getuint64()-theAmount;
+
+    const arith_uint256 amount256=arith_uint256(theAmount);
+    const arith_uint256 rate256=arith_uint256(rateTable[periods]);
+    const arith_uint256 rate0256=arith_uint256(rateTable[0]);
+    const arith_uint256 product=amount256*rate256;
+    const arith_uint256 result=product/rate0256;
+    return result.GetLow64()-theAmount;
+}
+
+std::string initRateTable(){
+    std::string str;
+
+    rateTable[0]=1;
+    rateTable[0]=rateTable[0]<<62;
+    
+    //Interest rate on each block 1+(1/2^22)
+    for(int i=1;i<MAXINTERESTPERIOD+1;i++){
+        rateTable[i]=rateTable[i-1]+(rateTable[i-1]>>22);
+        str += strprintf("%d %x\n",i,rateTable[i]);
+    }
+
+    for(int i=0;i<MAXINTERESTPERIOD;i++){
+        str += strprintf("rate: %d %d\n",i,getRateForAmount(i,COIN*100));
+    }
+
+    return str;
+}
+
+
+
+
+CAmount GetInterest(CAmount nValue, int outputBlockHeight, int valuationHeight){
+
+    //These conditions generally should not occur
+    if(outputBlockHeight<0 || valuationHeight<0 || valuationHeight<outputBlockHeight){
+        return nValue;
+    }
+
+    int blocks=std::min(MAXINTERESTPERIOD,valuationHeight-outputBlockHeight);
+
+    CAmount standardInterest=getRateForAmount(blocks, nValue);
+
+    return nValue+standardInterest;
 }

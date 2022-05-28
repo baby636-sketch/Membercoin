@@ -867,7 +867,7 @@ bool ParallelAcceptToMemoryPool(Snapshot &ss,
             // Bring the best block into scope
             view.GetBestBlock();
 
-            nValueIn = view.GetValueIn(*tx);
+            nValueIn = view.GetValueIn(*tx, chainActive.Height()+1);
 
             // we have all inputs cached now, so switch back to dummy, so we don't need to keep lock on mempool
             view.SetBackend(dummy);

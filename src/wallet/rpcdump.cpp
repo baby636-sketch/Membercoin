@@ -342,7 +342,7 @@ UniValue importaddress(const UniValue &params, bool fHelp)
     }
     else
     {
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid Bitcoin address or script");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid Member address or script");
     }
 
     if (fRescanLocal)
@@ -415,7 +415,7 @@ UniValue importaddresses(const UniValue &params, bool fHelp)
         }
         else
         {
-            throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid Bitcoin address or script");
+            throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid Member address or script");
         }
     }
 
@@ -712,7 +712,7 @@ UniValue dumpprivkey(const UniValue &params, bool fHelp)
                             "\nReveals the private key corresponding to 'bitcoinaddress'.\n"
                             "Then the importprivkey can be used with this output\n"
                             "\nArguments:\n"
-                            "1. \"bitcoinaddress\"   (string, required) The bitcoin address for the private key\n"
+                            "1. \"bitcoinaddress\"   (string, required) The member address for the private key\n"
                             "\nResult:\n"
                             "\"key\"                (string) The private key\n"
                             "\nExamples:\n" +
@@ -728,7 +728,7 @@ UniValue dumpprivkey(const UniValue &params, bool fHelp)
     CTxDestination dest = DecodeDestination(strAddress);
     if (!IsValidDestination(dest))
     {
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid Bitcoin address");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid Member address");
     }
     const CKeyID *keyID = boost::get<CKeyID>(&dest);
     if (!keyID)
@@ -799,7 +799,7 @@ UniValue dumpwallet(const UniValue &params, bool fHelp)
     std::sort(vKeyBirth.begin(), vKeyBirth.end());
 
     // produce output
-    file << strprintf("# Wallet dump created by Bitcoin %s (%s)\n", CLIENT_BUILD, CLIENT_DATE);
+    file << strprintf("# Wallet dump created by Member %s (%s)\n", CLIENT_BUILD, CLIENT_DATE);
     file << strprintf("# * Created on %s\n", EncodeDumpTime(GetTime()));
     file << strprintf("# * Best block at time of backup was %i (%s),\n", chainActive.Height(),
         chainActive.Tip()->GetBlockHash().ToString());

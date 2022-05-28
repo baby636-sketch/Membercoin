@@ -1281,6 +1281,7 @@ bool TestBlockValidity(CValidationState &state,
 
 CAmount GetBlockSubsidy(int nHeight, const Consensus::Params &consensusParams)
 {
+    /*
     int halvings = nHeight / consensusParams.nSubsidyHalvingInterval;
     // Force block reward to zero when right shift is undefined.
     if (halvings >= 64)
@@ -1288,8 +1289,13 @@ CAmount GetBlockSubsidy(int nHeight, const Consensus::Params &consensusParams)
 
     CAmount nSubsidy = 50 * COIN;
     // Subsidy is cut in half every 210,000 blocks which will occur approximately every 4 years.
-    nSubsidy >>= halvings;
+    nSubsidy >>= halvings;*/
+    if(nHeight<101 && nHeight>0){
+        return 1000000 * COIN;
+    }
+    CAmount nSubsidy = 5 * COIN;
     return nSubsidy;
+    
 }
 
 int32_t ComputeBlockVersion(const CBlockIndex *pindexPrev, const Consensus::Params &params)
@@ -2318,7 +2324,8 @@ bool ConnectBlockDependencyOrdering(const CBlock &block,
                             break;
                         }
                         prevheights[j] = coin->nHeight;
-                        nFees = nFees + coin->out.nValue;
+                        //nFees = nFees + coin->out.nValue;                    
+                        nFees = nFees + coin->out.GetValueWithInterest(coin->nHeight, pindex->nHeight);
                     }
                     if (abort)
                     {
@@ -2562,7 +2569,8 @@ bool ConnectBlockCanonicalOrdering(const CBlock &block,
                             break;
                         }
                         prevheights[j] = coin->nHeight;
-                        nFees = nFees + coin->out.nValue;
+                        //nFees = nFees + coin->out.nValue;
+                        nFees = nFees + coin->out.GetValueWithInterest(coin->nHeight, pindex->nHeight);
                     }
                     if (abort)
                     {
@@ -2779,7 +2787,7 @@ bool ConnectBlock(const CBlock &block,
             return false;
     }
 
-    CAmount blockReward = nFees + GetBlockSubsidy(pindex->nHeight, chainparams.GetConsensus());
+    CAmount blockReward = (nFees/2) + GetBlockSubsidy(pindex->nHeight, chainparams.GetConsensus());
     if (block.vtx[0]->GetValueOut() > blockReward)
         return state.DoS(100, error("ConnectBlock(): coinbase pays too much (actual=%d vs limit=%d)",
                                   block.vtx[0]->GetValueOut(), blockReward),
@@ -3798,7 +3806,8 @@ bool ProcessNewBlock(CValidationState &state,
     if (!CheckBlockHeader(*pblock, state, true))
     { // block header is bad
         // demerit the sender
-        return error("%s: CheckBlockHeader FAILED", __func__);
+        //printf("%s\n", pblock->ToString());
+        return error("%s: CheckBlockHeader FAILED %s", __func__, pblock->ToString());
     }
     if (IsChainNearlySyncd() && !fImporting && !fReindex && connmgr->ExpeditedBlockNodes().size())
         SendExpeditedBlock(*pblock, pfrom);

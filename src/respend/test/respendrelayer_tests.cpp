@@ -252,7 +252,7 @@ BOOST_FIXTURE_TEST_CASE(triggers_correctly, TestChain100Setup)
 
     // The following tests will check for dsproof exceptions
 
-    // 1) Create a dsproof where one transaction is not a bitcoin cash transaction (no fork id)
+    // 1) Create a dsproof where one transaction is not a membercash transaction (no fork id)
     {
         // remove the dsproof flag from the in mempool transaction
         WRITELOCK(pool.cs_txmempool);
@@ -278,7 +278,7 @@ BOOST_FIXTURE_TEST_CASE(triggers_correctly, TestChain100Setup)
     }
     catch (const std::runtime_error &e)
     {
-        BOOST_CHECK_EQUAL(e.what(), "Tx2 is not a Bitcoin Cash transaction");
+        BOOST_CHECK_EQUAL(e.what(), "Tx2 is not a Member transaction");
     }
 
     try
@@ -289,7 +289,7 @@ BOOST_FIXTURE_TEST_CASE(triggers_correctly, TestChain100Setup)
     }
     catch (const std::runtime_error &e)
     {
-        BOOST_CHECK_EQUAL(e.what(), "Tx1 is not a Bitcoin Cash transaction");
+        BOOST_CHECK_EQUAL(e.what(), "Tx1 is not a Member transaction");
     }
 
     // 2) Create a dsproof that where the transactions do not double spend each other

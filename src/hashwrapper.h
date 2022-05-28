@@ -16,6 +16,8 @@
 
 #include <vector>
 
+#include "blake3/blake3.h"
+
 typedef uint256 ChainCode;
 
 /** A hasher class for Bitcoin's 256-bit hash (double SHA-256). */
@@ -121,6 +123,26 @@ inline uint256 Hash(const T1 p1begin,
         .Write(p3begin == p3end ? pblank : (const unsigned char *)&p3begin[0], (p3end - p3begin) * sizeof(p3begin[0]))
         .Finalize((unsigned char *)&result);
     return result;
+}
+
+
+ 
+template<typename T1>
+inline uint256 HashBlake3(const T1 pbegin, const T1 pend)
+{
+    static unsigned char pblank[1];
+
+    blake3_hasher blhasher;
+    //Initialize a blake3_hasher in the default hashing mode.
+    blake3_hasher_init(&blhasher);
+
+    blake3_hasher_update( &blhasher, (pbegin == pend ? pblank : (unsigned char*)&pbegin[0]), (pend - pbegin) * sizeof(pbegin[0]) );
+
+    // Finalize the hash. BLAKE3_OUT_LEN is the default output length, 32 bytes.
+    uint256 hash1;
+    blake3_hasher_finalize(&blhasher, (unsigned char*)&hash1, BLAKE3_OUT_LEN);
+    return hash1;
+    
 }
 
 /** Compute the 160-bit hash an object. */

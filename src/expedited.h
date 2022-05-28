@@ -21,7 +21,7 @@ enum
 };
 
 
-// Checks to see if the node is configured in bitcoin.conf to
+// Checks to see if the node is configured in membercoin.conf to
 extern bool CheckAndRequestExpeditedBlocks(CNode *pfrom);
 
 // be an expedited block source and if so, request them.

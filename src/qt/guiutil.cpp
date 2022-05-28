@@ -667,8 +667,8 @@ fs::path static StartupShortcutPath()
     if (chain == CBaseChainParams::MAIN)
         return GetSpecialFolderPath(CSIDL_STARTUP) / "Bitcoin.lnk";
     if (chain == CBaseChainParams::TESTNET) // Remove this special case when CBaseChainParams::TESTNET = "testnet4"
-        return GetSpecialFolderPath(CSIDL_STARTUP) / "Bitcoin (testnet).lnk";
-    return GetSpecialFolderPath(CSIDL_STARTUP) / strprintf("Bitcoin (%s).lnk", chain);
+        return GetSpecialFolderPath(CSIDL_STARTUP) / "Member (testnet).lnk";
+    return GetSpecialFolderPath(CSIDL_STARTUP) / strprintf("Member (%s).lnk", chain);
 }
 
 bool GetStartOnSystemStartup()
@@ -810,7 +810,7 @@ bool SetStartOnSystemStartup(bool fAutoStart)
         if (chain == CBaseChainParams::MAIN)
             optionFile << "Name=Bitcoin\n";
         else
-            optionFile << strprintf("Name=Bitcoin (%s)\n", chain);
+            optionFile << strprintf("Name=Member (%s)\n", chain);
         optionFile << "Exec=" << pszExePath << strprintf(" -min -testnet=%d -regtest=%d\n",
                                                    GetBoolArg("-testnet", false), GetBoolArg("-regtest", false));
         optionFile << "Terminal=false\n";
@@ -887,7 +887,7 @@ bool SetStartOnSystemStartup(bool fAutoStart)
 
     if (fAutoStart && !foundItem)
     {
-        // add bitcoin app to startup item list
+        // add member app to startup item list
         LSSharedFileListInsertItemURL(
             loginItems, kLSSharedFileListItemBeforeFirst, nullptr, nullptr, bitcoinAppUrl, nullptr, nullptr);
     }

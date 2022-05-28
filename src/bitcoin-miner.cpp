@@ -101,8 +101,8 @@ public:
                   "sleep and poll every <duration> seconds until difficulty drops below this threshold. Value must be "
                   "a float or integer"))
             .addArg("address=<string>", ::AllowedArgs::requiredStr,
-                _("The address to send the newly generated bitcoin to. If omitted, will default to an address in the "
-                  "bitcoin daemon's wallet."));
+                _("The address to send the newly generated memberto. If omitted, will default to an address in the "
+                  "memberdaemon's wallet."));
     }
 };
 
@@ -188,15 +188,17 @@ static bool CpuMineBlockHasher(CBlockHeader *pblock,
         while (!found)
         {
             // Check if something found
-            if (ScanHash(pblock, nNonce, &hash))
-            {
+            //if (ScanHash(pblock, nNonce, &hash))
+            //{
+                pblock->nNonce++;
+                hash=pblock->GetHash();
                 if (UintToArith256(hash) <= hashTarget)
                 {
                     // Found a solution
-                    pblock->nNonce = nNonce;
+                    //pblock->nNonce = nNonce;
                     found = true;
-                    printf("proof-of-work found  \n  hash: %s  \ntarget: %s\n", hash.GetHex().c_str(),
-                        hashTarget.GetHex().c_str());
+                    printf("proof-of-work found  \n  hash: %s  \ntarget: %s\nblock : %s", hash.GetHex().c_str(),
+                        hashTarget.GetHex().c_str(),pblock->ToString());
                     break;
                 }
                 else
@@ -207,7 +209,7 @@ static bool CpuMineBlockHasher(CBlockHeader *pblock,
                         return false; // Give up leave
                     }
                 }
-            }
+            //}
         }
     }
 

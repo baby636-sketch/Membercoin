@@ -66,11 +66,11 @@
         <translation>Direcciones de recepción</translation>
     </message>
     <message>
-        <source>These are your Bitcoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Estas son tus direcciones Bitcoin para enviar pagos. Siempre chequeá el monto y la dirección de recepción antes de mandar monedas.</translation>
+        <source>These are your Member addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>Estas son tus direcciones Member para enviar pagos. Siempre chequeá el monto y la dirección de recepción antes de mandar monedas.</translation>
     </message>
     <message>
-        <source>These are your Bitcoin addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <source>These are your Member addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
         <translation>Estas son tus direcciones para recibir pagos. Te recomendamos que uses una dirección de recibir  para cada transacción.</translation>
     </message>
     <message>

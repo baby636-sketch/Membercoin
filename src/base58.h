@@ -147,10 +147,10 @@ public:
 typedef CBitcoinExtKeyBase<CExtKey, 74, CChainParams::EXT_SECRET_KEY> CBitcoinExtKey;
 typedef CBitcoinExtKeyBase<CExtPubKey, 74, CChainParams::EXT_PUBLIC_KEY> CBitcoinExtPubKey;
 
-/// Encode an old-style bitcoin address
+/// Encode an old-style member address
 std::string EncodeLegacyAddr(const CTxDestination &dest, const CChainParams &);
 
-/// Decode an old-style bitcoin address
+/// Decode an old-style member address
 CTxDestination DecodeLegacyAddr(const std::string &str, const CChainParams &);
 
 /// Encode a bitpay address

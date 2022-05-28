@@ -1,6 +1,6 @@
 # Notes
 The sources in this directory are unit test cases.  Boost includes a
-unit testing framework, and since bitcoin already uses boost, it makes
+unit testing framework, and since member already uses boost, it makes
 sense to simply use this framework rather than require developers to
 configure some other framework (we want as few impediments to creating
 unit tests as possible).
@@ -22,14 +22,14 @@ For further reading, I found the following website to be helpful in
 explaining how the boost unit test framework works:
 [http://www.alittlemadness.com/2009/03/31/c-unit-testing-with-boosttest/](http://www.alittlemadness.com/2009/03/31/c-unit-testing-with-boosttest/).
 
-test_bitcoin has some built-in command-line arguments; for
+test_member has some built-in command-line arguments; for
 example, to run just the getarg_tests verbosely:
 
-    test_bitcoin --log_level=all --run_test=getarg_tests
+    test_member--log_level=all --run_test=getarg_tests
 
 ... or to run just the doubledash test:
 
-    test_bitcoin --run_test=getarg_tests/doubledash
+    test_member--run_test=getarg_tests/doubledash
 
-Run  test_bitcoin --help   for the full list.
+Run  test_member--help   for the full list.
 

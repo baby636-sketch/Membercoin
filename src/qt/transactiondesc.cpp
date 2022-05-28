@@ -158,7 +158,7 @@ QString TransactionDesc::toHTML(CWallet *wallet, CWalletTx &wtx, TransactionReco
         CAmount nUnmatured = 0;
         for (const CTxOut &txout : wtx.vout)
         {
-            nUnmatured += wallet->GetCredit(txout, ISMINE_ALL);
+            nUnmatured += wallet->GetCredit(txout, ISMINE_ALL, 0);
         }
 
         strHTML += "<b>" + tr("Credit") + ":</b> ";
@@ -310,7 +310,7 @@ QString TransactionDesc::toHTML(CWallet *wallet, CWalletTx &wtx, TransactionReco
                         strHTML += "<b>" + tr("Public label:") + "</b> " + labelPublic.c_str() + "<br>";
 
                     strHTML += "<b>" + tr("Credit") + ":</b> " +
-                               BitcoinUnits::formatHtmlWithUnit(unit, wallet->GetCredit(txout, ISMINE_ALL)) + "<br>";
+                               BitcoinUnits::formatHtmlWithUnit(unit, wallet->GetCredit(txout, ISMINE_ALL, 0)) + "<br>";
                 }
             }
         }
@@ -385,7 +385,7 @@ QString TransactionDesc::toHTML(CWallet *wallet, CWalletTx &wtx, TransactionReco
             if (wallet->IsMine(txout))
             {
                 strHTML += "<b>" + tr("Credit") + ":</b> " +
-                           BitcoinUnits::formatHtmlWithUnit(unit, wallet->GetCredit(txout, ISMINE_ALL)) + "<br>";
+                           BitcoinUnits::formatHtmlWithUnit(unit, wallet->GetCredit(txout, ISMINE_ALL, 0)) + "<br>";
             }
         }
 

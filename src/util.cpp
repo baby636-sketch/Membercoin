@@ -244,8 +244,8 @@ void LogInit()
 }
 }
 
-const char *const BITCOIN_CONF_FILENAME = "bitcoin.conf";
-const char *const BITCOIN_PID_FILENAME = "bitcoind.pid";
+const char *const BITCOIN_CONF_FILENAME = "membercoin.conf";
+const char *const BITCOIN_PID_FILENAME = "membercoind.pid";
 const char *const FORKS_CSV_FILENAME = "forks.csv"; // bip135 added
 // Application startup time (used for uptime calculation)
 const int64_t nStartupTime = GetTime();
@@ -640,7 +640,7 @@ fs::path GetDefaultDataDir()
 // Unix: ~/.bitcoin
 #ifdef WIN32
     // Windows
-    return GetSpecialFolderPath(CSIDL_APPDATA) / "Bitcoin";
+    return GetSpecialFolderPath(CSIDL_APPDATA) / "Membercoin";
 #else
     fs::path pathRet;
     char *pszHome = getenv("HOME");
@@ -650,10 +650,10 @@ fs::path GetDefaultDataDir()
         pathRet = fs::path(pszHome);
 #ifdef MAC_OSX
     // Mac
-    return pathRet / "Library/Application Support/Bitcoin";
+    return pathRet / "Library/Application Support/Membercoin";
 #else
     // Unix
-    return pathRet / ".bitcoin";
+    return pathRet / ".membercoin";
 #endif
 #endif
 }
@@ -738,14 +738,14 @@ void ReadConfigFile(std::map<std::string, std::string> &mapSettingsRet,
 {
     fs::ifstream streamConfig(GetConfigFile(GetArg("-conf", BITCOIN_CONF_FILENAME)));
     if (!streamConfig.good())
-        return; // No bitcoin.conf file is OK
+        return; // No membercoin.conf file is OK
 
     std::set<std::string> setOptions;
     setOptions.insert("*");
 
     for (boost::program_options::detail::config_file_iterator it(streamConfig, setOptions), end; it != end; ++it)
     {
-        // Don't overwrite existing settings so command line settings override bitcoin.conf
+        // Don't overwrite existing settings so command line settings override membercoin.conf
         std::string strKey = std::string("-") + it->string_key;
         std::string strValue = it->value[0];
         InterpretNegativeSetting(strKey, strValue);

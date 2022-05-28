@@ -24,7 +24,7 @@ const std::string CBaseChainParams::REGTEST = "regtest";
 class CBaseMainParams : public CBaseChainParams
 {
 public:
-    CBaseMainParams() { nRPCPort = 8332; }
+    CBaseMainParams() { nRPCPort = 8682; }
 };
 static CBaseMainParams mainParams;
 

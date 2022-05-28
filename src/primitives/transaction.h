@@ -148,6 +148,8 @@ public:
     bool IsNull() const { return (nValue == -1); }
     uint256 GetHash() const;
 
+    CAmount GetValueWithInterest(int outputBlockHeight, int valuationHeight) const;
+
     CAmount GetDustThreshold() const
     {
         if (scriptPubKey.IsUnspendable())
@@ -315,4 +317,10 @@ static inline CTransactionRef MakeTransactionRef(Tx &&txIn)
 {
     return std::make_shared<const CTransaction>(std::forward<Tx>(txIn));
 }
+
+
+CAmount getRateForAmount(int periods, CAmount theAmount);
+std::string initRateTable();
+CAmount GetInterest(CAmount nValue, int outputBlockHeight, int valuationHeight);
+
 #endif // BITCOIN_PRIMITIVES_TRANSACTION_H

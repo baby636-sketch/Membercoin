@@ -74,7 +74,7 @@ QList<TransactionRecord> TransactionRecord::decomposeTransaction(const CWallet *
                 }
                 else if (ExtractDestination(txout.scriptPubKey, address) && wallet->IsMine(address))
                 {
-                    // Received by Bitcoin Address
+                    // Received by Member Address
                     sub.type = TransactionRecord::RecvWithAddress;
                     if (labelPublic == "")
                         sub.addresses.push_back(std::make_pair(EncodeDestination(address), txout.scriptPubKey));
@@ -167,7 +167,7 @@ QList<TransactionRecord> TransactionRecord::decomposeTransaction(const CWallet *
                     continue;
                 else if (ExtractDestination(txout.scriptPubKey, address))
                 {
-                    // Sent to Bitcoin Address
+                    // Sent to Member Address
                     sub.type = TransactionRecord::SendToAddress;
                     sub.addresses.push_back(std::make_pair(EncodeDestination(address), txout.scriptPubKey));
                 }

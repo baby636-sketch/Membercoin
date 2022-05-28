@@ -34,7 +34,7 @@
 #endif
 
 // These globals are needed here so bitcoin-cli can link
-const std::string CURRENCY_UNIT = "BCH";
+const std::string CURRENCY_UNIT = "MEM";
 const std::string DEFAULT_TOR_CONTROL = "127.0.0.1:9051";
 const char DEFAULT_RPCCONNECT[] = "127.0.0.1";
 
@@ -496,7 +496,7 @@ static void addWalletOptions(AllowedArgs &allowedArgs)
                 _("(1 = keep tx meta data e.g. account owner and payment request information, 2 = drop tx meta data)"),
             walletParamOptional)
         .addArg("usecashaddr", optionalBool,
-            _("Use Bitcoin Cash Address for destination encoding (Activates by default Jan 14, 2017)"),
+            _("Use Member Address for destination encoding (Activates by default Jan 14, 2017)"),
             walletParamOptional);
 }
 #endif
@@ -851,7 +851,7 @@ BitcoinBench::BitcoinBench() : AllowedArgs(true)
 {
     addHelpOptions(*this);
 
-    addHeader("Bitcoin Bench options:")
+    addHeader("Member Bench options:")
         .addArg("-list", ::AllowedArgs::optionalStr,
             "List benchmarks without executing them. Can be combined with -scaling and -filter")
         .addArg("-evals=<n>", ::AllowedArgs::requiredInt,
@@ -883,7 +883,7 @@ BitcoinTx::BitcoinTx() : AllowedArgs(false)
         .addArg("create", optionalBool, _("Create new, empty TX."))
         .addArg("json", optionalBool, _("Select JSON output"))
         .addArg("txid", optionalBool, _("Output only the hex-encoded transaction id of the resultant transaction."))
-        .addDebugArg("", optionalBool, "Read hex-encoded bitcoin transaction from stdin.");
+        .addDebugArg("", optionalBool, "Read hex-encoded member transaction from stdin.");
 }
 
 ConfigFile::ConfigFile(CTweakMap *pTweaks) : AllowedArgs(false)

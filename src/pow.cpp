@@ -123,7 +123,10 @@ uint32_t GetNextASERTWorkRequired(const CBlockIndex *pindexPrev,
     // as per the absolute formulation of ASERT.
     // This is somewhat counterintuitive since it is referred to as the anchor timestamp, but
     // as per the formula the timestamp of block M-1 must be used if the anchor is M.
-    assert(pindexPrev->pprev != nullptr);
+    
+    //Member - mining from genesis
+    //assert(pindexPrev->pprev != nullptr);
+    
     // Note: time difference is to parent of anchor block (or to anchor block itself iff anchor is genesis).
     //       (according to absolute formulation of ASERT)
     const auto anchorTime =
@@ -155,7 +158,8 @@ arith_uint256 CalculateASERT(const arith_uint256 &refTarget,
 
     // We need some leading zero bits in powLimit in order to have room to handle
     // overflows easily. 32 leading zero bits is more than enough.
-    assert((powLimit >> 224) == 0);
+    //Member - this ain't true
+    //assert((powLimit >> 224) == 0);
 
     // Height diff should NOT be negative.
     assert(nHeightDiff >= 0);
@@ -234,7 +238,7 @@ arith_uint256 CalculateASERT(const arith_uint256 &refTarget,
 
 
 /**
- * Compute the next required proof of work using the legacy Bitcoin difficulty
+ * Compute the next required proof of work using the legacy Member difficulty
  * adjustement + Emergency Difficulty Adjustement (EDA).
  */
 static uint32_t GetNextEDAWorkRequired(const CBlockIndex *pindexPrev,

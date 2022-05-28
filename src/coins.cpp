@@ -465,17 +465,25 @@ unsigned int CCoinsViewCache::GetCacheSize() const
     return cacheCoins.size();
 }
 
-CAmount CCoinsViewCache::GetValueIn(const CTransaction &tx) const
+CAmount CCoinsViewCache::GetValueIn(const CTransaction &tx, int valuationHeight) const
 {
     READLOCK(cs_utxo);
     if (tx.IsCoinBase())
         return 0;
 
-    CAmount nResult = 0;
-    for (unsigned int i = 0; i < tx.vin.size(); i++)
-        nResult += _AccessCoin(tx.vin[i].prevout).out.nValue;
+    //CAmount nResult = 0;
+    //for (unsigned int i = 0; i < tx.vin.size(); i++)
+    //    nResult += _AccessCoin(tx.vin[i].prevout).out.nValue;
 
-    return nResult;
+    CAmount nValueIn = 0;
+    for (unsigned int i = 0; i < tx.vin.size(); i++){
+        CTxOut outTX=_AccessCoin(tx.vin[i].prevout).out;
+        //const COutPoint &prevout = tx.vin[i].prevout;
+        nValueIn += outTX.GetValueWithInterest(_AccessCoin(tx.vin[i].prevout).nHeight,valuationHeight);
+    }
+
+    //return nResult;
+    return nValueIn;
 }
 
 bool CCoinsViewCache::HaveInputs(const CTransaction &tx) const

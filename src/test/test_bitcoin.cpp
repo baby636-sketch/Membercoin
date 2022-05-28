@@ -3,7 +3,7 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#define BOOST_TEST_MODULE Bitcoin Test Suite
+#define BOOST_TEST_MODULE Member Test Suite
 
 #include "test_bitcoin.h"
 
@@ -196,7 +196,7 @@ struct StartupShutdown
         options_description optDef("Options");
         optDef.add_options()("testhelp", "program options information")(
             "log_level", "set boost logging (all, test_suite, message, warning, error, ...)")(
-            "log_bitcoin", value<std::string>()->required(), "bitcoin logging destination (console, none)");
+            "log_bitcoin", value<std::string>()->required(), "member logging destination (console, none)");
         variables_map opts;
         store(parse_command_line(boost::unit_test::framework::master_test_suite().argc,
                   boost::unit_test::framework::master_test_suite().argv, optDef),
@@ -214,8 +214,8 @@ struct StartupShutdown
             if (s == "console")
             {
                 /* To enable this, add
-                   -- --log_bitcoin console
-                   to the end of the test_bitcoin argument list. */
+                   -- --log_memberconsole
+                   to the end of the test_member argument list. */
                 Logging::LogToggleCategory(ALL, true);
                 fPrintToConsole = true;
                 fPrintToDebugLog = false;

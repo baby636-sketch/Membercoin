@@ -29,7 +29,7 @@ UniValue ParseNonRFCJSONValue(const std::string &strVal);
 
 #define CONTINUE_EXECUTION -1
 
-// Initialize apps that use the bitcoin.conf configuration file and flags.
+// Initialize apps that use the membercoin.conf configuration file and flags.
 // This function returns either EXIT_FAILURE or EXIT_SUCCESS codes (stdlib.h) when it's expected to stop the process
 // or CONTINUE_EXECUTION when it's expected to continue further.
 int AppInitRPC(const std::string &usage, const AllowedArgs::AllowedArgs &allowedArgs, int argc, char *argv[]);

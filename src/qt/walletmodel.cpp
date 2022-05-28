@@ -205,7 +205,7 @@ WalletModel::SendCoinsReturn WalletModel::prepareTransaction(WalletModelTransact
             total += subtotal;
         }
         else
-        { // User-entered bitcoin address / amount:
+        { // User-entered member address / amount:
             if (!validateAddress(rcp.address))
             {
                 return InvalidAddress;
@@ -550,6 +550,8 @@ void WalletModel::getOutputs(const std::vector<COutPoint> &vOutpoints, std::vect
         int nDepth = wallet->mapWallet[outpoint.hash].GetDepthInMainChain();
         if (nDepth < 0)
             continue;
+        CAmount availableCredit= wallet->mapWallet[outpoint.hash].GetAvailableCredit();
+        if (availableCredit <= 0) continue;
         COutput out(&wallet->mapWallet[outpoint.hash], outpoint.n, nDepth, true);
         vOutputs.push_back(out);
     }

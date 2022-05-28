@@ -111,7 +111,7 @@ inline void fill(const UniValue &v, bool &output)
 }
 
 /** A configuration parameter that is automatically hooked up to
- * bitcoin.conf, bitcoin-cli, and is available as a command line argument
+ * membercoin.conf, bitcoin-cli, and is available as a command line argument
  */
 template <class DataType>
 class CTweakRef : public CTweakBase
@@ -213,7 +213,7 @@ public:
 };
 
 /** A configuration parameter that is automatically hooked up to
- * bitcoin.conf, bitcoin-cli, and is available as a command line argument
+ * membercoin.conf, bitcoin-cli, and is available as a command line argument
  */
 template <class DataType>
 class CTweak : public CTweakBase

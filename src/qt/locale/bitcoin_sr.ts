@@ -190,8 +190,8 @@
         <translation>Промени &amp;лозинку...</translation>
     </message>
     <message>
-        <source>Send coins to a Bitcoin address</source>
-        <translation>Пошаљите новац на bitcoin адресу</translation>
+        <source>Send coins to a Member address</source>
+        <translation>Пошаљите новац на memberадресу</translation>
     </message>
     <message>
         <source>Change the passphrase used for wallet encryption</source>
@@ -223,7 +223,7 @@
     </message>
     <message>
         <source>&amp;About BCH Unlimited</source>
-        <translation>O Bitcoin Coru</translation>
+        <translation>O Member Coru</translation>
     </message>
     <message>
         <source>Up to date</source>
@@ -322,7 +322,7 @@
     </message>
     <message>
         <source>About BCH Unlimited</source>
-        <translation>O Bitcoin Coru</translation>
+        <translation>O Member Coru</translation>
     </message>
     <message>
         <source>Usage:</source>

@@ -108,7 +108,7 @@ if BUILD_BITCOIN_UTILS
 endif
 
 .PHONY: FORCE check-symbols check-security check-formatting
-# bitcoin core #
+# membercore #
 BITCOIN_CORE_H = \
   addrman.h \
   allowed_args.h \
@@ -191,6 +191,7 @@ BITCOIN_CORE_H = \
   netbase.h \
   noui.h \
   parallel.h \
+  patternsearch.h \
   policy/fees.h \
   policy/policy.h \
   policy/mempool.h \
@@ -307,6 +308,7 @@ libbitcoin_server_a_SOURCES = \
   net_processing.cpp \
   nodestate.cpp \
   noui.cpp \
+  patternsearch.cpp \
   parallel.cpp \
   policy/fees.cpp \
   policy/policy.cpp \
@@ -388,6 +390,8 @@ libbitcoincash_a_SOURCES = \
   hashwrapper.h \
   key.cpp \
   key.h \
+  patternsearch.cpp \
+  patternsearch.h \
   primitives/block.cpp \
   primitives/block.h \
   primitives/transaction.cpp \
@@ -485,8 +489,16 @@ libbitcoin_consensus_a_SOURCES = \
   hashwrapper.cpp \
   hashwrapper.h \
   prevector.h \
+  patternsearch.cpp \
+  patternsearch.h \
   primitives/block.cpp \
   primitives/block.h \
+  blake3/blake3.h \
+  blake3/blake3.c \
+  blake3/blake3_portable.c \
+  blake3/blake3_impl.h \
+  blake3/blake3_sse2.c \
+  blake3/blake3_dispatch.c \
   primitives/transaction.cpp \
   primitives/transaction.h \
   pubkey.cpp \
@@ -529,6 +541,7 @@ libbitcoin_common_a_SOURCES = \
   keystore.cpp \
   netaddress.cpp \
   netbase.cpp \
+  patternsearch.cpp \
   protocol.cpp \
   script/sign.cpp \
   script/standard.cpp \
@@ -659,6 +672,18 @@ bitcoin_tx_LDADD += $(BOOST_LIBS) $(CRYPTO_LIBS)
 bitcoin_miner_SOURCES = bitcoin-miner.cpp \
   arith_uint256.cpp \
   arith_uint256.h \
+  primitives/transaction.cpp \
+  primitives/transaction.h \
+  patternsearch.cpp \
+  patternsearch.h \
+  primitives/block.cpp \
+  primitives/block.h \
+  blake3/blake3.h \
+  blake3/blake3.c \
+  blake3/blake3_portable.c \
+  blake3/blake3_impl.h \
+  blake3/blake3_sse2.c \
+  blake3/blake3_dispatch.c \
   uint256.cpp \
   uint256.h
 

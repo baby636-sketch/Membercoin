@@ -62,13 +62,13 @@
         <translation>Recibiendo direcciones</translation>
     </message>
     <message>
-        <source>These are your Bitcoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <source>These are your Member addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
         <translation>
-Estas son las direcciones de Bitcoin para enviar pagos . Siempre verifique la cantidad y la dirección de recepción antes de enviar monedas.</translation>
+Estas son las direcciones de Member para enviar pagos . Siempre verifique la cantidad y la dirección de recepción antes de enviar monedas.</translation>
     </message>
     <message>
-        <source>These are your Bitcoin addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>Estas son las direcciones de Bitcoin para recibir los pagos . Se recomienda el uso de una nueva dirección de recepción para cada transacción.</translation>
+        <source>These are your Member addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <translation>Estas son las direcciones de Member para recibir los pagos . Se recomienda el uso de una nueva dirección de recepción para cada transacción.</translation>
     </message>
     <message>
         <source>Copy &amp;Label</source>
@@ -287,7 +287,7 @@ Estas son las direcciones de Bitcoin para enviar pagos . Siempre verifique la ca
         <translation>Importando bloques desde el disco...</translation>
     </message>
     <message>
-        <source>Send coins to a Bitcoin address</source>
+        <source>Send coins to a Member address</source>
         <translation>Enviando monedas a una dirección de Bitcoin</translation>
     </message>
     <message>

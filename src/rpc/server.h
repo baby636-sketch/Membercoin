@@ -136,7 +136,7 @@ public:
 };
 
 /**
- * Bitcoin RPC command dispatcher.
+ * Member RPC command dispatcher.
  */
 class CRPCTable
 {

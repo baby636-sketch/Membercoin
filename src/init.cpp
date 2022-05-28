@@ -680,7 +680,7 @@ void ThreadImport(std::vector<fs::path> vImportFiles, uint64_t nTxIndexCache)
 }
 
 /** Sanity checks
- *  Ensure that Bitcoin is running in a usable environment with all
+ *  Ensure that Member is running in a usable environment with all
  *  necessary library support.
  */
 bool InitSanityCheck(void)
@@ -1049,7 +1049,7 @@ bool AppInit2(Config &config)
     {
         InitWarning(_("Config option -minrelaytxfee is no longer supported.  To set the limit "
                       "below which a transaction is considered zero fee please use -minlimitertxfee.  "
-                      "To convert -minrelaytxfee, which is specified  in BCH/KB, to -minlimtertxfee, "
+                      "To convert -minrelaytxfee, which is specified  in MEM/KB, to -minlimtertxfee, "
                       "which is specified in Satoshi/Byte, simply multiply the original -minrelaytxfee "
                       "by 100,000. For example, a -minrelaytxfee=0.00001000 will become -minlimitertxfee=1.000"));
     }
@@ -1127,7 +1127,7 @@ bool AppInit2(Config &config)
 
     std::string strDataDir = GetDataDir().string();
 
-    // Make sure only a single Bitcoin process is using the data directory.
+    // Make sure only a single Member process is using the data directory.
     fs::path pathLockFile = GetDataDir() / ".lock";
     FILE *file = fsbridge::fopen(pathLockFile, "a"); // empty lock file; created if it doesn't exist.
     if (file)
@@ -1260,6 +1260,38 @@ bool AppInit2(Config &config)
         }
     }
 
+//Ensure rate data is the same across all systems
+    string rateData=initRateTable();
+    const std::vector<unsigned char> data2(rateData.begin(), rateData.end());
+    int rateDataHash=MurmurHash3(1989,data2);
+    //LOGA(rateData);
+    LOGA("Rate Data Hash=%d\n",rateDataHash);
+    assert(rateDataHash==-753007581);
+
+    /*
+    CAmount principal=100*COIN;
+    int ONEDAY=1108;
+
+    std::ostringstream ss;
+
+    ss << "\n";
+    for(int i=0;i<ONEDAY*1000;i=i+ONEDAY){
+        ss << ((GetInterest(principal, i, i+(ONEDAY*1))-principal)*365*100.0)/principal << ","
+        << ((GetInterest(principal, i, i+(ONEDAY*7))-principal)*52*100.0)/principal << ","
+        << ((GetInterest(principal, i, i+(ONEDAY*28))-principal)*13*100.0)/principal << ","
+        << ((GetInterest(principal, i, i+(ONEDAY*91))-principal)*4*100.0)/principal << ","
+        << ((GetInterest(principal, i, i+(ONEDAY*182))-principal)*2*100.0)/principal << ","
+        << ((GetInterest(principal, i, i+(ONEDAY*364))-principal)*100.0)/principal << ","
+        << "\n";
+    }
+
+    //Make sure the interest rate table is the same across all systems
+    string interestRateTable=ss.str();
+    const std::vector<unsigned char> data(interestRateTable.begin(), interestRateTable.end());
+    int rateTableHash=MurmurHash3(1989,data);
+    LOGA("Rate Table Hash=%d\n",rateTableHash);
+    assert(rateTableHash==-1013504577);
+    */
     int64_t nStart;
 
 // ********************************************************* Step 5: verify wallet database integrity

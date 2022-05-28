@@ -263,14 +263,14 @@
     </message>
     <message>
         <source>BCH Unlimited client</source>
-        <translation>cliente bitcoin core</translation>
+        <translation>cliente membercore</translation>
     </message>
     <message>
         <source>Reindexing blocks on disk...</source>
         <translation>Cargando el index de bloques...</translation>
     </message>
     <message>
-        <source>Send coins to a Bitcoin address</source>
+        <source>Send coins to a Member address</source>
         <translation>Enviar monedas a una dirección bitcoin</translation>
     </message>
     <message>
@@ -318,7 +318,7 @@
         <translation>&amp;Mostrar/Ocultar</translation>
     </message>
     <message>
-        <source>Sign messages with your Bitcoin addresses to prove you own them</source>
+        <source>Sign messages with your Member addresses to prove you own them</source>
         <translation>Firmar un mensaje para provar que usted es dueño de esta dirección</translation>
     </message>
     <message>
@@ -339,7 +339,7 @@
     </message>
     <message>
         <source>BCH Unlimited</source>
-        <translation>bitcoin core</translation>
+        <translation>membercore</translation>
     </message>
     <message>
         <source>Request payments (generates QR codes and %1 URIs)</source>
@@ -516,8 +516,8 @@
         <translation>La dirección introducida "%1" ya esta guardada en la libreta de direcciones.</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid Bitcoin address.</source>
-        <translation>La dirección introducida "%1" no es una dirección Bitcoin valida.</translation>
+        <source>The entered address "%1" is not a valid Member address.</source>
+        <translation>La dirección introducida "%1" no es una dirección Member valida.</translation>
     </message>
     <message>
         <source>Could not unlock wallet.</source>
@@ -539,7 +539,7 @@
     <name>HelpMessageDialog</name>
     <message>
         <source>BCH Unlimited</source>
-        <translation>bitcoin core</translation>
+        <translation>membercore</translation>
     </message>
     <message>
         <source>version</source>
@@ -562,7 +562,7 @@
     </message>
     <message>
         <source>BCH Unlimited</source>
-        <translation>bitcoin core</translation>
+        <translation>membercore</translation>
     </message>
     <message>
         <source>Error</source>
@@ -603,8 +603,8 @@
         <translation>experto</translation>
     </message>
     <message>
-        <source>Automatically open the Bitcoin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>Abre automáticamente el puerto del cliente Bitcoin en el router. Esto funciona solo cuando tu router es compatible con UPnP y está habilitado.</translation>
+        <source>Automatically open the Member client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>Abre automáticamente el puerto del cliente Member en el router. Esto funciona solo cuando tu router es compatible con UPnP y está habilitado.</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
@@ -1021,7 +1021,7 @@
         <translation>Firma</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this Bitcoin address</source>
+        <source>Sign the message to prove you own this Member address</source>
         <translation>Firmar un mensjage para probar que usted es dueño de esta dirección</translation>
     </message>
     <message>
@@ -1050,7 +1050,7 @@
     </message>
     <message>
         <source>Please check the address and try again.</source>
-        <translation>Por favor, revise la dirección Bitcoin e inténtelo denuevo</translation>
+        <translation>Por favor, revise la dirección Member e inténtelo denuevo</translation>
     </message>
     <message>
         <source>Wallet unlock was cancelled.</source>
@@ -1073,7 +1073,7 @@
     <name>SplashScreen</name>
     <message>
         <source>BCH Unlimited</source>
-        <translation>bitcoin core</translation>
+        <translation>membercore</translation>
     </message>
     <message>
         <source>[testnet]</source>

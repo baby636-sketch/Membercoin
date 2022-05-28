@@ -36,8 +36,8 @@
  *
  * This is the developer documentation of Bitcoin Unlimited
  * (https://www.bitcoinunlimited.info/). Bitcoin Unlimited is a client for the
- * digital currency called Bitcoin Cash, which enables instant payments to anyone,
- * anywhere in the world. Bitcoin Cash uses peer-to-peer technology to operate
+ * digital currency called Member, which enables instant payments to anyone,
+ * anywhere in the world. Member uses peer-to-peer technology to operate
  * with no central authority: managing transactions and issuing money are
  * carried out collectively by the network.
  *
@@ -76,7 +76,7 @@ bool AppInit(int argc, char *argv[])
     //
     // Parameters
     //
-    // If Qt is used, parameters/bitcoin.conf are parsed in qt/bitcoin.cpp's main()
+    // If Qt is used, parameters/membercoin.conf are parsed in qt/bitcoin.cpp's main()
     AllowedArgs::Bitcoind allowedArgs(&tweaks);
     try
     {
@@ -175,7 +175,7 @@ bool AppInit(int argc, char *argv[])
         fDaemon = GetBoolArg("-daemon", false);
         if (fDaemon)
         {
-            fprintf(stdout, "Bitcoin server starting\n");
+            fprintf(stdout, "Member server starting\n");
 
             // Daemonize
             pid_t pid = fork();

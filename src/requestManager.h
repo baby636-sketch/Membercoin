@@ -2,7 +2,7 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-/* The request manager creates an isolation layer between the bitcoin message processor and the network.
+/* The request manager creates an isolation layer between the member message processor and the network.
 It tracks known locations of data objects and issues requests to the node most likely to respond.  It monitors responses
 and is capable of re-requesting the object if the node disconnects or does not respond.
 
@@ -40,11 +40,11 @@ static const uint8_t MAX_THINTYPE_OBJECT_REQUESTS = 100;
 // How many peers are connected before we start looking for slow peers to disconnect.
 static const uint32_t BEGIN_PRUNING_PEERS = 4;
 
-// When should I request a tx from someone else (in microseconds). cmdline/bitcoin.conf: -txretryinterval
+// When should I request a tx from someone else (in microseconds). cmdline/membercoin.conf: -txretryinterval
 extern unsigned int txReqRetryInterval;
 extern unsigned int MIN_TX_REQUEST_RETRY_INTERVAL;
 static const unsigned int DEFAULT_MIN_TX_REQUEST_RETRY_INTERVAL = 5 * 1000 * 1000;
-// When should I request a block from someone else (in microseconds). cmdline/bitcoin.conf: -blkretryinterval
+// When should I request a block from someone else (in microseconds). cmdline/membercoin.conf: -blkretryinterval
 extern unsigned int blkReqRetryInterval;
 extern unsigned int MIN_BLK_REQUEST_RETRY_INTERVAL;
 static const unsigned int DEFAULT_MIN_BLK_REQUEST_RETRY_INTERVAL = 5 * 1000 * 1000;

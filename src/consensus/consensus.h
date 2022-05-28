@@ -28,13 +28,13 @@ static const unsigned int DEFAULT_LARGEST_TRANSACTION = 1000000;
 /** The minimum allowed size for a transaction, in bytes */
 static const unsigned int MIN_TX_SIZE = 100;
 
-/** This is the default max bloom filter size allowed on the bitcoin network.  In Bitcoin Unlimited we have the ability
+/** This is the default max bloom filter size allowed on the member network.  In Bitcoin Unlimited we have the ability
  *  to communicate to our peer what max bloom filter size we will accept but still observe this value as a default.
  */
 static const unsigned int SMALLEST_MAX_BLOOM_FILTER_SIZE = 36000; // bytes
 
 /** Coinbase transaction outputs can only be spent after this number of new blocks (network rule) */
-static const int COINBASE_MATURITY = 100;
+static const int COINBASE_MATURITY = 20;
 
 /** per May, 15 '18 upgrade specification the min value for min value for max accepted block size, i.e. EB, is 32 MB
  * (github.com/bitcoincashorg/bitcoincash.org/blob/master/spec/may-2018-hardfork.md#summary)

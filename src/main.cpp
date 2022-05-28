@@ -57,6 +57,7 @@
 #include "validation/validation.h"
 #include "validationinterface.h"
 #include "versionbits.h"
+#include "patternsearch.h"
 
 #include <algorithm>
 #include <boost/algorithm/hex.hpp>
@@ -69,7 +70,7 @@
 #include <thread>
 
 #if defined(NDEBUG)
-#error "Bitcoin cannot be compiled without assertions."
+#error "Member cannot be compiled without assertions."
 #endif
 
 /**

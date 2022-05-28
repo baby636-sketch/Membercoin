@@ -58,11 +58,11 @@
         <translation>Ontvanger adresse</translation>
     </message>
     <message>
-        <source>These are your Bitcoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Hierdie is die adresse vanwaar u Bitcoin betalings stuur. U moet altyd die bedrag en die adres van die ontvanger nagaan voordat u enige munte stuur.</translation>
+        <source>These are your Member addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>Hierdie is die adresse vanwaar u Member betalings stuur. U moet altyd die bedrag en die adres van die ontvanger nagaan voordat u enige munte stuur.</translation>
     </message>
     <message>
-        <source>These are your Bitcoin addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <source>These are your Member addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
         <translation>Hierdie is die adresse waar u Bitcoins sal ontvang. Ons beveel aan dat u 'n nuwe adres kies vir elke transaksie</translation>
     </message>
     <message>
@@ -153,7 +153,7 @@
     </message>
     <message>
         <source>BCH Unlimited will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your bitcoins from being stolen by malware infecting your computer.</source>
-        <translation>Bitcoin Kern gaan nou toemaak om die kodifikasie af te handel. Onthou dat die kodifikasie van u beursie nie altyd u munte kan beskerm teen diefstal deur kwaadwillige sagteware op u rekenaar nie.</translation>
+        <translation>Member Kern gaan nou toemaak om die kodifikasie af te handel. Onthou dat die kodifikasie van u beursie nie altyd u munte kan beskerm teen diefstal deur kwaadwillige sagteware op u rekenaar nie.</translation>
     </message>
     <message>
         <source>IMPORTANT: Any previous backups you have made of your wallet file should be replaced with the newly generated, encrypted wallet file. For security reasons, previous backups of the unencrypted wallet file will become useless as soon as you start using the new, encrypted wallet.</source>
@@ -259,7 +259,7 @@
     </message>
     <message>
         <source>BCH Unlimited client</source>
-        <translation>Bitcoin Kern klient</translation>
+        <translation>Member Kern klient</translation>
     </message>
     <message>
         <source>Importing blocks from disk...</source>
@@ -270,8 +270,8 @@
         <translation>Besig met herindeksering van blokke op hardeskyf...</translation>
     </message>
     <message>
-        <source>Send coins to a Bitcoin address</source>
-        <translation>Stuur munte na 'n Bitcoin adres</translation>
+        <source>Send coins to a Member address</source>
+        <translation>Stuur munte na 'n Member adres</translation>
     </message>
     <message>
         <source>Backup wallet to another location</source>
@@ -299,7 +299,7 @@
     </message>
     <message>
         <source>Show information about BCH Unlimited</source>
-        <translation>Vertoon inligting oor Bitcoin Kern</translation>
+        <translation>Vertoon inligting oor Member Kern</translation>
     </message>
     <message>
         <source>Show or hide the main Window</source>
@@ -310,12 +310,12 @@
         <translation>Kodifiseer die private sleutes wat aan jou beursie gekoppel is.</translation>
     </message>
     <message>
-        <source>Sign messages with your Bitcoin addresses to prove you own them</source>
-        <translation>Onderteken boodskappe met u Bitcoin adresse om u eienaarskap te bewys</translation>
+        <source>Sign messages with your Member addresses to prove you own them</source>
+        <translation>Onderteken boodskappe met u Member adresse om u eienaarskap te bewys</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified Bitcoin addresses</source>
-        <translation>Verifieër boodskappe om seker te maak dat dit met die gespesifiseerde Bitcoin adresse</translation>
+        <source>Verify messages to ensure they were signed with specified Member addresses</source>
+        <translation>Verifieër boodskappe om seker te maak dat dit met die gespesifiseerde Member adresse</translation>
     </message>
     <message>
         <source>&amp;Help</source>
@@ -323,7 +323,7 @@
     </message>
     <message>
         <source>BCH Unlimited</source>
-        <translation>Bitcoin Kern</translation>
+        <translation>Member Kern</translation>
     </message>
     <message>
         <source>Tabs toolbar</source>
@@ -383,11 +383,11 @@
     </message>
     <message>
         <source>&amp;About BCH Unlimited</source>
-        <translation>&amp;Omtrent Bitcoin Kern</translation>
+        <translation>&amp;Omtrent Member Kern</translation>
     </message>
     <message>
         <source>Modify configuration options for BCH Unlimited</source>
-        <translation>Verander konfigurasie-opsies vir Bitcoin Kern</translation>
+        <translation>Verander konfigurasie-opsies vir Member Kern</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
@@ -422,7 +422,7 @@
     <name>HelpMessageDialog</name>
     <message>
         <source>BCH Unlimited</source>
-        <translation>Bitcoin Kern</translation>
+        <translation>Member Kern</translation>
     </message>
     <message>
         <source>Reset all settings changes made over the GUI</source>
@@ -433,7 +433,7 @@
     <name>Intro</name>
     <message>
         <source>BCH Unlimited</source>
-        <translation>Bitcoin Kern</translation>
+        <translation>Member Kern</translation>
     </message>
     </context>
 <context>
@@ -497,7 +497,7 @@
     <name>SplashScreen</name>
     <message>
         <source>BCH Unlimited</source>
-        <translation>Bitcoin Kern</translation>
+        <translation>Member Kern</translation>
     </message>
     </context>
 <context>

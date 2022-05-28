@@ -20,6 +20,8 @@
 
 #include "chainparamsseeds.h"
 
+#include <stdio.h>
+
 // Next protocol upgrade will be activated once MTP >= Nov 15 12:00:00 UTC 2020
 const uint64_t NOV2020_ACTIVATION_TIME = 1605441600;
 uint64_t nMiningForkTime = NOV2020_ACTIVATION_TIME;
@@ -109,21 +111,21 @@ public:
         strNetworkID = "main";
         consensus.nSubsidyHalvingInterval = 210000;
         // 00000000000000ce80a7e057163a4db1d5ad7b20fb6f598c9597b9665c8fb0d4 - April 1, 2012
-        consensus.BIP16Height = 173805;
-        consensus.BIP34Height = 227931;
+        consensus.BIP16Height = 0;
+        consensus.BIP34Height = 0;
         consensus.BIP34Hash = uint256S("0x000000000000024b89b42a942fe0d9fea3bb44ab7bd1b19115dd6a759c0808b8");
-        consensus.BIP65Height = 388381; // 000000000000000004c2b624ed5d7756c508d90fd0da2c7c679febfa6c4735f0
-        consensus.BIP66Height = 363725; // 00000000000000000379eaa19dce8c9b722d46ae6a57c2f1a988119488b50931
-        consensus.BIP68Height = 419328; // BIP68, 112, 113 has activated
-        consensus.powLimit = uint256S("00000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
-        consensus.nPowTargetTimespan = 14 * 24 * 60 * 60; // two weeks
-        consensus.nPowTargetSpacing = 10 * 60;
+        consensus.BIP65Height = 0; // 000000000000000004c2b624ed5d7756c508d90fd0da2c7c679febfa6c4735f0
+        consensus.BIP66Height = 0; // 00000000000000000379eaa19dce8c9b722d46ae6a57c2f1a988119488b50931
+        consensus.BIP68Height = 0; // BIP68, 112, 113 has activated
+        consensus.powLimit = uint256S("000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
+        consensus.nPowTargetTimespan = 60 * 60 * 48; // two days
+        consensus.nPowTargetSpacing = 78; // 78 seconds
         consensus.fPowAllowMinDifficultyBlocks = false;
         consensus.fPowNoRetargeting = false;
         // The half life for the ASERT DAA. For every (nASERTHalfLife) seconds behind schedule the blockchain gets,
         // difficulty is cut in half. Doubled if blocks are ahead of schedule.
         // Two days
-        consensus.nASERTHalfLife = 2 * 24 * 60 * 60;
+        consensus.nASERTHalfLife = 60 * 60 * 4; // four hours
         // testing bit
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].bit = 28;
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nStartTime = 1199145601LL; // January 1, 2008
@@ -132,17 +134,17 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].threshold = 1916; // 95% of 2016
 
         // Aug, 1 2017 hard fork
-        consensus.uahfHeight = 478559;
+        consensus.uahfHeight = 0;
         // Nov, 13 2017 hard fork
-        consensus.daaHeight = 504031;
+        consensus.daaHeight = 0;
         // May, 15 2018 hard fork
-        consensus.may2018Height = 530359;
+        consensus.may2018Height = 0;
         // Nov, 15 2018 hard fork
-        consensus.nov2018Height = 556766;
+        consensus.nov2018Height = 0;
         // Noc, 15 2019 hard fork
-        consensus.nov2019Height = 609135;
+        consensus.nov2019Height = 0;
         // May, 15 2020 hard fork
-        consensus.may2020Height = 635258;
+        consensus.may2020Height = 0;
         // Nov 15, 2020 12:00:00 UTC protocol upgrade¶
         consensus.nov2020ActivationTime = NOV2020_ACTIVATION_TIME;
 
@@ -151,13 +153,13 @@ public:
          * The characters are rarely used upper ASCII, not valid as UTF-8, and produce
          * a large 32-bit integer with any alignment.
          */
-        pchMessageStart[0] = 0xf9;
-        pchMessageStart[1] = 0xbe;
-        pchMessageStart[2] = 0xb4;
-        pchMessageStart[3] = 0xd9;
+        pchMessageStart[0] = 0xe3;
+        pchMessageStart[1] = 0xe1;
+        pchMessageStart[2] = 0xf8;
+        pchMessageStart[3] = 0xe8;
         pchCashMessageStart[0] = 0xe3;
         pchCashMessageStart[1] = 0xe1;
-        pchCashMessageStart[2] = 0xf3;
+        pchCashMessageStart[2] = 0xf8;
         pchCashMessageStart[3] = 0xe8;
         nDefaultPort = DEFAULT_MAINNET_PORT;
         nPruneAfterHeight = 100000;
@@ -165,20 +167,69 @@ public:
         nMinMaxBlockSize = MIN_EXCESSIVE_BLOCK_SIZE;
         nDefaultMaxBlockMiningSize = DEFAULT_BLOCK_MAX_SIZE;
 
-        genesis = CreateGenesisBlock(1231006505, 2083236893, 0x1d00ffff, 1, 50 * COIN);
-        consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock ==
-               uint256S("0x000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f"));
-        assert(
-            genesis.hashMerkleRoot == uint256S("0x4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b"));
+        // genesis = CreateGenesisBlock(1231006505, 2083236893, 0x1d00ffff, 1, 50 * COIN);
+        std::vector<unsigned char> rawScript(ParseHex("76a914a123a6fdc265e1bbcf1123458891bd7af1a1b5d988ac"));
+        CScript outputScript(rawScript.begin(), rawScript.end());
 
-        // List of Bitcoin Cash compatible seeders
-        vSeeds.push_back(CDNSSeedData("bitcoinunlimited.info", "btccash-seeder.bitcoinunlimited.info", true));
-        vSeeds.push_back(CDNSSeedData("bitcoinforks.org", "seed-bch.bitcoinforks.org", true));
-        vSeeds.push_back(CDNSSeedData("bchd.cash", "seed.bchd.cash", true));
-        vSeeds.push_back(CDNSSeedData("bch.loping.net", "seed.bch.loping.net", true));
-        vSeeds.push_back(CDNSSeedData("electroncash.de", "dnsseed.electroncash.de", true));
-        vSeeds.push_back(CDNSSeedData("flowee.cash", "seed.flowee.cash", true));
+        uint32_t nBits = UintToArith256(consensus.powLimit).GetCompact();
+        arith_uint256 hashTarget = arith_uint256().SetCompact(nBits);
+
+        genesis = CreateGenesisBlock(
+            CScript() << 0, "enough already", outputScript, 1653627777, 17304381, nBits, 1, 5 * COIN);
+        // genesis.nStartLocation = 64;
+        // genesis.nFinalCalculation = 4277402212;
+        consensus.hashGenesisBlock = genesis.GetHash();
+        if (UintToArith256(consensus.hashGenesisBlock) > hashTarget)
+        {
+            uint256 thash;
+            // char *scratchpad;
+            // scratchpad=new char[(1<<30)];
+            while (true)
+            {
+                // int collisions=0;
+                // thash = genesis.FindBestPatternHash(collisions,scratchpad,8);
+                genesis.nNonce++;
+                thash = genesis.GetHash();
+                if (UintToArith256(thash) <= hashTarget)
+                {
+                    printf("nonce %u: hash = %s (target = %s)\n", genesis.nNonce, genesis.GetHash().ToString().c_str(), hashTarget.ToString().c_str());
+                    printf("block.nTime = %u \n", genesis.nTime);
+                    printf("block.nNonce = %u \n", genesis.nNonce);
+                    printf("block.GetHash = %s\n", genesis.GetHash().ToString().c_str());
+                    printf("block.nBits = %u \n", genesis.nBits);
+                    // printf("block.nStartLocation = %u \n", genesis.nStartLocation);
+                    // printf("block.nFinalCalculation = %u \n", genesis.nFinalCalculation);
+                    consensus.hashGenesisBlock = genesis.GetHash();
+                    break;
+                }
+                
+                if (genesis.nNonce == 0)
+                {
+                    printf("NONCE WRAPPED, incrementing time\n");
+                    ++genesis.nTime;
+                }
+            }
+        }
+        // if(noncetry%100000==0){
+        //     printf(" %08X\n",noncetry);
+        //     printf(" %s\n",genesis.GetHash().ToString().c_str());
+        //
+        // }
+        // noncetry++;
+
+
+        // assert(consensus.hashGenesisBlock ==
+        // uint256S("0x000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f"));
+        // assert(genesis.hashMerkleRoot ==
+        // uint256S("0x4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b"));
+
+        // List of Member compatible seeders
+        // vSeeds.push_back(CDNSSeedData("bitcoinunlimited.info", "btccash-seeder.bitcoinunlimited.info", true));
+        // vSeeds.push_back(CDNSSeedData("bitcoinforks.org", "seed-bch.bitcoinforks.org", true));
+        // vSeeds.push_back(CDNSSeedData("bchd.cash", "seed.bchd.cash", true));
+        // vSeeds.push_back(CDNSSeedData("bch.loping.net", "seed.bch.loping.net", true));
+        // vSeeds.push_back(CDNSSeedData("electroncash.de", "dnsseed.electroncash.de", true));
+        // vSeeds.push_back(CDNSSeedData("flowee.cash", "seed.flowee.cash", true));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 0);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 5);
@@ -187,7 +238,7 @@ public:
             boost::assign::list_of(0x04)(0x88)(0xB2)(0x1E).convert_to_container<std::vector<unsigned char> >();
         base58Prefixes[EXT_SECRET_KEY] =
             boost::assign::list_of(0x04)(0x88)(0xAD)(0xE4).convert_to_container<std::vector<unsigned char> >();
-        cashaddrPrefix = "bitcoincash";
+        cashaddrPrefix = "member";
 
         // BITCOINUNLIMITED START
         vFixedSeeds = std::vector<SeedSpec6>();
@@ -201,44 +252,17 @@ public:
 
         // clang-format off
         checkpointData = CCheckpointData();
-        MapCheckpoints &checkpoints = checkpointData.mapCheckpoints;
-        checkpoints[ 11111] = uint256S("0x0000000069e244f73d78e8fd29ba2fd2ed618bd6fa2ee92559f542fdb26e7c1d");
-        checkpoints[ 33333] = uint256S("0x000000002dd5588a74784eaa7ab0507a18ad16a236e7b1ce69f00d7ddfb5d0a6");
-        checkpoints[ 74000] = uint256S("0x0000000000573993a3c9e41ce34471c079dcf5f52a0e824a81e7f953b8661a20");
-        checkpoints[105000] = uint256S("0x00000000000291ce28027faea320c8d2b054b2e0fe44a773f3eefb151d6bdc97");
-        checkpoints[134444] = uint256S("0x00000000000005b12ffd4cd315cd34ffd4a594f430ac814c91184a0d42d2b0fe");
-        checkpoints[168000] = uint256S("0x000000000000099e61ea72015e79632f216fe6cb33d7899acb35b75c8303b763");
-        checkpoints[193000] = uint256S("0x000000000000059f452a5f7340de6682a977387c17010ff6e6c3bd83ca8b1317");
-        checkpoints[210000] = uint256S("0x000000000000048b95347e83192f69cf0366076336c639f9b7228e9ba171342e");
-        checkpoints[216116] = uint256S("0x00000000000001b4f4b433e81ee46494af945cf96014816a4e2370f11b23df4e");
-        checkpoints[225430] = uint256S("0x00000000000001c108384350f74090433e7fcf79a606b8e797f065b130575932");
-        checkpoints[250000] = uint256S("0x000000000000003887df1f29024b06fc2200b55f8af8f35453d7be294df2d214");
-        checkpoints[279000] = uint256S("0x0000000000000001ae8c72a0b0c301f67e3afca10e819efa9041e458e9bd7e40");
-        checkpoints[295000] = uint256S("0x00000000000000004d9b4ef50f0f9d686fd69db2e03af35a100370c64632a983");
-        // August 1st 2017 CASH fork (UAHF)
-        checkpoints[478559] = uint256S("0x000000000000000000651ef99cb9fcbe0dadde1d424bd9f15ff20136191a5eec");
-        // November 13th 2017 new DAA fork
-        checkpoints[504031] = uint256S("0x0000000000000000011ebf65b60d0a3de80b8175be709d653b4c1a1beeb6ab9c");
-        // May 15th 2018 re-enable op_codes and 32 MB max block size
-        checkpoints[530359] = uint256S("0x0000000000000000011ada8bd08f46074f44a8f155396f43e38acf9501c49103");
-        // Nov 15th 2018 activate LTOR, DSV op_code
-        checkpoints[556767] = uint256S("0x0000000000000000004626ff6e3b936941d341c5932ece4357eeccac44e6d56c");
-        // May 15th 2019 activate Schnorr, segwit recovery
-        checkpoints[582680] = uint256S("0x000000000000000001b4b8e36aec7d4f9671a47872cb9a74dc16ca398c7dcc18");
-        // Nov 15th 2019 activate Schnorr Multisig, minimal data
-        checkpoints[609136] = uint256S("0x000000000000000000b48bb207faac5ac655c313e41ac909322eaa694f5bc5b1");
-        // May 15th 2020 activate op_reverse, SigChecks
-        checkpoints[635259] = uint256S("0x00000000000000000033dfef1fc2d6a5d5520b078c55193a9bf498c5b27530f7");
-        // Nov 15th 2020 new aserti3-2d DAA
-        checkpoints[661648] = uint256S("0x0000000000000000029e471c41818d24b8b74c911071c4ef0b4a0509f9b5a8ce");
+        //MapCheckpoints &checkpoints = checkpointData.mapCheckpoints;
+        //checkpoints[ 11111] = uint256S("0x0000000069e244f73d78e8fd29ba2fd2ed618bd6fa2ee92559f542fdb26e7c1d");
+
 
         // clang-format on
         // * UNIX timestamp of last checkpoint block
-        checkpointData.nTimeLastCheckpoint = 1573825449;
+        checkpointData.nTimeLastCheckpoint = 0;
         // * total number of transactions between genesis and last checkpoint
-        checkpointData.nTransactionsLastCheckpoint = 281198294;
+        checkpointData.nTransactionsLastCheckpoint = 0;
         // * estimated number of transactions per day after checkpoint (~3.5 TPS)
-        checkpointData.fTransactionsPerDay = 280000.0;
+        checkpointData.fTransactionsPerDay = 10000.0;
     }
 };
 
@@ -270,8 +294,8 @@ public:
         consensus.fPowAllowMinDifficultyBlocks = true;
         consensus.fPowNoRetargeting = false;
 
-        assert(
-            consensus.hashGenesisBlock == uint256S("0000000057e31bd2066c939a63b7b8623bd0f10d8c001304bdfc1a7902ae6d35"));
+        // assert(consensus.hashGenesisBlock ==
+        // uint256S("0000000057e31bd2066c939a63b7b8623bd0f10d8c001304bdfc1a7902ae6d35"));
 
         /**
          * The message start string is designed to be unlikely to occur in normal data.
@@ -399,10 +423,11 @@ public:
 
         genesis = CreateGenesisBlock(1296688602, 414098458, 0x1d00ffff, 1, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock ==
-               uint256S("0x000000000933ea01ad0ee984209779baaec3ced90fa3f408719526f8d77f4943"));
-        assert(
-            genesis.hashMerkleRoot == uint256S("0x4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b"));
+        // assert(consensus.hashGenesisBlock ==
+        //        uint256S("0x000000000933ea01ad0ee984209779baaec3ced90fa3f408719526f8d77f4943"));
+        // assert(
+        //     genesis.hashMerkleRoot ==
+        //     uint256S("0x4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b"));
 
         vFixedSeeds.clear();
         vSeeds.clear();
@@ -529,10 +554,11 @@ public:
 
         genesis = CreateGenesisBlock(1296688602, 2, 0x207fffff, 1, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock ==
-               uint256S("0x0f9188f13cb7b2c71f2a335e3a4fc328bf5beb436012afca590b1a11466e2206"));
-        assert(
-            genesis.hashMerkleRoot == uint256S("0x4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b"));
+        // assert(consensus.hashGenesisBlock ==
+        //        uint256S("0x0f9188f13cb7b2c71f2a335e3a4fc328bf5beb436012afca590b1a11466e2206"));
+        // assert(
+        //     genesis.hashMerkleRoot ==
+        //     uint256S("0x4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b"));
 
         vFixedSeeds.clear(); //! Regtest mode doesn't have any fixed seeds.
         vSeeds.clear(); //! Regtest mode doesn't have any DNS seeds.
@@ -632,8 +658,8 @@ public:
 
         genesis = CreateGenesisBlock(1597811185, 114152193, 0x1d00ffff, 1, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock ==
-               uint256S("0x000000001dd410c49a788668ce26751718cc797474d3152a5fc073dd44fd9f7b"));
+        // assert(consensus.hashGenesisBlock ==
+        //        uint256S("0x000000001dd410c49a788668ce26751718cc797474d3152a5fc073dd44fd9f7b"));
 
         vFixedSeeds.clear();
         vSeeds.clear();
@@ -756,9 +782,11 @@ public:
 
         genesis = CreateGenesisBlock(1598282438, -1567304284, 0x1d00ffff, 1, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(
-            consensus.hashGenesisBlock == uint256S("00000000e6453dc2dfe1ffa19023f86002eb11dbb8e87d0291a4599f0430be52"));
-        assert(genesis.hashMerkleRoot == uint256S("4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b"));
+        // assert(
+        //     consensus.hashGenesisBlock ==
+        //     uint256S("00000000e6453dc2dfe1ffa19023f86002eb11dbb8e87d0291a4599f0430be52"));
+        // assert(genesis.hashMerkleRoot ==
+        // uint256S("4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b"));
 
         vFixedSeeds.clear();
         vSeeds.clear();

@@ -19,7 +19,7 @@
     </message>
     <message>
         <source>BCH Unlimited</source>
-        <translation>Bitcoin Jezrga</translation>
+        <translation>Member Jezrga</translation>
     </message>
     </context>
 <context>
@@ -38,14 +38,14 @@
     <name>HelpMessageDialog</name>
     <message>
         <source>BCH Unlimited</source>
-        <translation>Bitcoin Jezrga</translation>
+        <translation>Member Jezrga</translation>
     </message>
     </context>
 <context>
     <name>Intro</name>
     <message>
         <source>BCH Unlimited</source>
-        <translation>Bitcoin Jezrga</translation>
+        <translation>Member Jezrga</translation>
     </message>
     </context>
 <context>
@@ -113,7 +113,7 @@
     <name>SplashScreen</name>
     <message>
         <source>BCH Unlimited</source>
-        <translation>Bitcoin Jezrga</translation>
+        <translation>Member Jezrga</translation>
     </message>
     </context>
 <context>

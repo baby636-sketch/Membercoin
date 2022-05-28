@@ -602,7 +602,7 @@ void CNode::copyStats(CNodeStats &stats)
         nPingUsecWait = GetStopwatchMicros() - nPingUsecStart;
     }
 
-    // Raw ping time is in microseconds, but show it to user as whole seconds (Bitcoin users should be well used to
+    // Raw ping time is in microseconds, but show it to user as whole seconds (Member users should be well used to
     // small numbers with many decimal places by now :)
     stats.dPingTime = (((double)nPingUsecTime) / 1e6);
     stats.dPingMin = (((double)nMinPingUsecTime) / 1e6);
@@ -1700,7 +1700,7 @@ void ThreadMapPort()
             }
         }
 
-        string strDesc = "Bitcoin " + FormatFullVersion();
+        string strDesc = "Member " + FormatFullVersion();
 
         while (true)
         {
@@ -1872,7 +1872,7 @@ static void DNSAddressSeed()
     LOGA("%d addresses found from DNS seeds\n", found);
 }
 
-#if 0 // Disabled until a Bitcoin Cash compatible "bitnodes" site becomes available
+#if 0 // Disabled until a Member compatible "bitnodes" site becomes available
 static void BitnodesAddressSeed()
 {
     // Get nodes from websites offering Bitnodes API
@@ -2042,7 +2042,7 @@ void ThreadOpenConnections()
             {
                 CAddress addr;
                 // NOTE: Because the only nodes we are connecting to here are the ones the user put in their
-                //      bitcoin.conf/commandline args as "-connect", we don't use the semaphore to limit outbound
+                //      membercoin.conf/commandline args as "-connect", we don't use the semaphore to limit outbound
                 //      connections
                 OpenNetworkConnection(addr, false, nullptr, strAddr.c_str());
                 for (int i = 0; i < 10 && i < nLoop; i++)
@@ -2811,7 +2811,7 @@ void StartNode()
     }
 
     // We need to initialize vAddedNodes here.  It is now used in AcceptConnection to limit the number of inbound
-    // connections based on the configured "addnode" options from bitcoin.conf/command line, however the old
+    // connections based on the configured "addnode" options from membercoin.conf/command line, however the old
     // initialization location in ThreadOpenAddedConnections was both started after ThreadSocketHandler, which
     // calls AcceptConnection, and has an explicit 15 second delay to the start of ThreadOpenAddedConnections
     // which allows any nodes actively trying to connect to this node during startup to exceed the inbound connection

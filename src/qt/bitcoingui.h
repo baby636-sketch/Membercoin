@@ -42,7 +42,7 @@ class QProgressDialog;
 QT_END_NAMESPACE
 
 /**
-  Bitcoin GUI main class. This class represents the main window of the Bitcoin UI. It communicates with both the client
+  Member GUI main class. This class represents the main window of the Member UI. It communicates with both the client
   and
   wallet models to give the user an up-to-date view of the current core state.
 */
@@ -66,7 +66,7 @@ public:
 
 #ifdef ENABLE_WALLET
     /** Set the wallet model.
-        The wallet model represents a bitcoin wallet, and offers access to the list of transactions, address book and
+        The wallet model represents a member wallet, and offers access to the list of transactions, address book and
        sending
         functionality.
     */

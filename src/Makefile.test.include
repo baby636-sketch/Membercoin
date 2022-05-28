@@ -47,7 +47,7 @@ BITCOIN_TEST_SUITE = \
   test/testutil.cpp \
   test/testutil.h
 
-# test_bitcoin binary #
+# test_member binary #
 BITCOIN_TESTS =\
   respend/test/respendrelayer_tests.cpp \
   respend/test/respenddetector_tests.cpp \

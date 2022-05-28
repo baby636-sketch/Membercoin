@@ -313,6 +313,12 @@ bool Consensus::CheckTxInputs(const CTransactionRef tx, CValidationState &state,
             inputs.GetCoin(prevout, coin); // Make a copy so I don't hold the utxo lock
             assert(!coin.IsSpent());
 
+            // If there are multiple coinbase spends we still only need to get the spend height once.
+            if (nSpendHeight == -1)
+                {
+                    nSpendHeight = GetSpendHeight(inputs);
+                }
+            
             // If prev is coinbase, check that it's matured
             if (coin.IsCoinBase())
             {
@@ -321,11 +327,7 @@ bool Consensus::CheckTxInputs(const CTransactionRef tx, CValidationState &state,
                 CAmount nCoinOutValue = coin.out.nValue;
                 int nCoinHeight = coin.nHeight;
 
-                // If there are multiple coinbase spends we still only need to get the spend height once.
-                if (nSpendHeight == -1)
-                {
-                    nSpendHeight = GetSpendHeight(inputs);
-                }
+                
                 if (nSpendHeight - nCoinHeight < COINBASE_MATURITY)
                     return state.Invalid(false, REJECT_INVALID, "bad-txns-premature-spend-of-coinbase",
                         strprintf("tried to spend coinbase at depth %d", nSpendHeight - nCoinHeight));
@@ -334,13 +336,15 @@ bool Consensus::CheckTxInputs(const CTransactionRef tx, CValidationState &state,
                 // we released cs_utxo, because we can't be certain the value didn't change during the time
                 // cs_utxo was unlocked.
                 nValueIn += nCoinOutValue;
+
                 if (!MoneyRange(nCoinOutValue) || !MoneyRange(nValueIn))
                     return state.DoS(100, false, REJECT_INVALID, "bad-txns-inputvalues-outofrange");
             }
             else
             {
                 // Check for negative or overflow input values
-                nValueIn += coin.out.nValue;
+                //nValueIn += coin.out.nValue;
+                nValueIn += coin.out.GetValueWithInterest(coin.nHeight, nSpendHeight);
                 if (!MoneyRange(coin.out.nValue) || !MoneyRange(nValueIn))
                     return state.DoS(100, false, REJECT_INVALID, "bad-txns-inputvalues-outofrange");
             }

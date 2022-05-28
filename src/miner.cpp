@@ -114,7 +114,7 @@ uint64_t BlockAssembler::reserveBlockSize(const CScript &scriptPubKeyIn, int64_t
 
     // BU add the proper block size quantity to the actual size
     nHeaderSize = ::GetSerializeSize(h, SER_NETWORK, PROTOCOL_VERSION);
-    assert(nHeaderSize == 80); // BU always 80 bytes
+    //assert(nHeaderSize == 80); // BU always 80 bytes
     nHeaderSize += 5; // tx count varint - 5 bytes is enough for 4 billion txs; 3 bytes for 65535 txs
 
 
@@ -275,6 +275,8 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript &sc
             pblocktemplate->vTxSigOps.push_back(txe->GetSigOpCount());
         }
 
+        nFees=nFees/2;
+        LOGA("CreateNewBlock(): nfees claimed %d\n", nFees);
         // Create coinbase transaction.
         pblock->vtx[0] =
             coinbaseTx(scriptPubKeyIn, nHeight, nFees + GetBlockSubsidy(nHeight, chainparams.GetConsensus()));
