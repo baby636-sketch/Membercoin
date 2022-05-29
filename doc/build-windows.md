@@ -71,6 +71,9 @@ CONFIG_SITE=$PWD/depends/x86_64-w64-mingw32/share/config.site ./configure --pref
 make
 ```
 
+see https://unix.stackexchange.com/questions/410003/how-do-i-install-mingw-std-threads-on-ubuntu
+if problems with mutex. Choose '1' for posix
+
 ## Building for 32-bit Windows
 
 To build executables for Windows 32-bit, install the following dependencies:
