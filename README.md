@@ -4,9 +4,6 @@
 
 Membercoin is an experimental new digital currency to support the Member.Cash social network.
 
-# Installing
-
-For info on installing Membercoin see [INSTALL.md](INSTALL.md)
 
 # Building
 
