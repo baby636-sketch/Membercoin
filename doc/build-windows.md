@@ -67,7 +67,7 @@ cd depends
 make HOST=x86_64-w64-mingw32
 cd ..
 ./autogen.sh # not required when building from tarball
-CONFIG_SITE=$PWD/depends/x86_64-w64-mingw32/share/config.site ./configure --prefix=/ LDFLAGS="-Wl,-no-undefined" --disable-zmq --with-incompatible-bdb
+CONFIG_SITE=$PWD/depends/x86_64-w64-mingw32/share/config.site ./configure --prefix=/ LDFLAGS="-Wl,-no-undefined" --disable-zmq --with-incompatible-bdb --disable-tests
 make
 ```
 
@@ -89,7 +89,7 @@ cd depends
 make HOST=i686-w64-mingw32
 cd ..
 ./autogen.sh # not required when building from tarball
-CONFIG_SITE=$PWD/depends/i686-w64-mingw32/share/config.site ./configure --prefix=/ LDFLAGS="-Wl,-no-undefined" --disable-zmq --with-incompatible-bdb
+CONFIG_SITE=$PWD/depends/i686-w64-mingw32/share/config.site ./configure --prefix=/ LDFLAGS="-Wl,-no-undefined" --disable-zmq --with-incompatible-bdb --disable-tests
 make
 ```
 
