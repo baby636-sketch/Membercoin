@@ -86,8 +86,7 @@ public:
     bool IsNull() const { return (nBits == 0); }
     uint256 GetHash() const;
     uint256 GetMidHash() const;
-    uint256 FindBestPatternHash(int& collisions,char *scratchpad,int nThreads);
-
+    
     int64_t GetBlockTime() const { return (int64_t)nTime; }
 
     std::string ToString() const;

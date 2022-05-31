@@ -57,7 +57,6 @@
 #include "validation/validation.h"
 #include "validationinterface.h"
 #include "versionbits.h"
-#include "patternsearch.h"
 
 #include <algorithm>
 #include <boost/algorithm/hex.hpp>

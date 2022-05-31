@@ -191,7 +191,6 @@ BITCOIN_CORE_H = \
   netbase.h \
   noui.h \
   parallel.h \
-  patternsearch.h \
   policy/fees.h \
   policy/policy.h \
   policy/mempool.h \
@@ -308,7 +307,6 @@ libbitcoin_server_a_SOURCES = \
   net_processing.cpp \
   nodestate.cpp \
   noui.cpp \
-  patternsearch.cpp \
   parallel.cpp \
   policy/fees.cpp \
   policy/policy.cpp \
@@ -390,12 +388,16 @@ libbitcoincash_a_SOURCES = \
   hashwrapper.h \
   key.cpp \
   key.h \
-  patternsearch.cpp \
-  patternsearch.h \
   primitives/block.cpp \
   primitives/block.h \
   primitives/transaction.cpp \
   primitives/transaction.h \
+  blake3/blake3.h \
+  blake3/blake3.c \
+  blake3/blake3_portable.c \
+  blake3/blake3_impl.h \
+  blake3/blake3_sse2.c \
+  blake3/blake3_dispatch.c \
   pubkey.cpp \
   pubkey.h \
   random.cpp \
@@ -489,8 +491,6 @@ libbitcoin_consensus_a_SOURCES = \
   hashwrapper.cpp \
   hashwrapper.h \
   prevector.h \
-  patternsearch.cpp \
-  patternsearch.h \
   primitives/block.cpp \
   primitives/block.h \
   blake3/blake3.h \
@@ -541,12 +541,17 @@ libbitcoin_common_a_SOURCES = \
   keystore.cpp \
   netaddress.cpp \
   netbase.cpp \
-  patternsearch.cpp \
   protocol.cpp \
   script/sign.cpp \
   script/standard.cpp \
   versionbits.cpp \
   chain.cpp \
+  blake3/blake3.h \
+  blake3/blake3.c \
+  blake3/blake3_portable.c \
+  blake3/blake3_impl.h \
+  blake3/blake3_sse2.c \
+  blake3/blake3_dispatch.c \
   $(BITCOIN_CORE_H)
 
 # util: shared between all executables.
@@ -674,8 +679,6 @@ bitcoin_miner_SOURCES = bitcoin-miner.cpp \
   arith_uint256.h \
   primitives/transaction.cpp \
   primitives/transaction.h \
-  patternsearch.cpp \
-  patternsearch.h \
   primitives/block.cpp \
   primitives/block.h \
   blake3/blake3.h \
