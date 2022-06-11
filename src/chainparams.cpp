@@ -175,7 +175,7 @@ public:
         arith_uint256 hashTarget = arith_uint256().SetCompact(nBits);
 
         genesis = CreateGenesisBlock(
-            CScript() << 0, "enough already", outputScript, 1653627777, 44978367, nBits, 1, 5 * COIN);
+            CScript() << 0, "enough already", outputScript, 1654916868, 47566902, nBits, 1, 5 * COIN);
         // genesis.nStartLocation = 64;
         // genesis.nFinalCalculation = 4277402212;
         consensus.hashGenesisBlock = genesis.GetHash();
