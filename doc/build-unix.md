@@ -313,7 +313,7 @@ cd BU/depends
 make HOST=x86_64-pc-linux-gnu NO_QT=1 -j4
 cd ..
 ./autogen.sh
-./configure --prefix=$PWD/depends/x86_64-pc-linux-gnu --without-gui
+./configure --prefix=$PWD/depends/x86_64-pc-linux-gnu --without-gui --disable-tests
 make -j4
 ```
 

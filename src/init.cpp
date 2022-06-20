@@ -1001,7 +1001,7 @@ bool AppInit2(Config &config)
     if (nMempoolSizeMax < 0 || nMempoolSizeMax < nMempoolSizeMin)
         return InitError(strprintf(_("-maxmempool must be at least %d MB"), std::ceil(nMempoolSizeMin / 1000000.0)));
 
-    fServer = GetBoolArg("-server", false);
+    fServer = GetBoolArg("-server", true);
 
     // block pruning; get the amount of disk space (in MiB) to allot for block & undo files
     int64_t nSignedPruneTarget = GetArg("-prune", 0) * 1024 * 1024;

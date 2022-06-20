@@ -324,7 +324,7 @@ bool Consensus::CheckTxInputs(const CTransactionRef tx, CValidationState &state,
             {
                 // Copy these values here because once we unlock and re-lock cs_utxo we can't count on "coin"
                 // still being valid.
-                CAmount nCoinOutValue = coin.out.nValue;
+                CAmount nCoinOutValue = coin.out.GetValueWithInterest(coin.nHeight, nSpendHeight);
                 int nCoinHeight = coin.nHeight;
 
                 

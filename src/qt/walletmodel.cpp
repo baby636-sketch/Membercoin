@@ -59,7 +59,8 @@ CAmount WalletModel::getBalance(const CCoinControl *coinControl) const
         wallet->AvailableCoins(vCoins, true, coinControl);
         for (const COutput &out : vCoins)
             if (out.fSpendable)
-                nBalance += out.tx->vout[out.i].nValue;
+                //nBalance += out.tx->vout[out.i].nValue;
+                nBalance += out.tx->vout[out.i].GetValueWithInterest((chainActive.Height()+1)-out.tx->GetDepthInMainChain(),chainActive.Height()+1);
 
         return nBalance;
     }

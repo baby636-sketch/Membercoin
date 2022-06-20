@@ -699,7 +699,7 @@ static void addBlockCreationOptions(AllowedArgs &allowedArgs)
 static void addRpcServerOptions(AllowedArgs &allowedArgs)
 {
     allowedArgs.addHeader(_("RPC server options:"))
-        .addArg("server", optionalBool, _("Accept command line and JSON-RPC commands"))
+        .addArg("server", optionalBool, _("Accept command line and JSON-RPC commands"), true)
         .addArg("rest", optionalBool, strprintf(_("Accept public REST requests (default: %u)"), DEFAULT_REST_ENABLE))
         .addArg("rpcbind=<addr>", requiredStr,
             _("Bind to given address to listen for JSON-RPC connections. Use [host]:port notation for IPv6. This "

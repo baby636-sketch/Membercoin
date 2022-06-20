@@ -2212,12 +2212,13 @@ bool CWallet::SelectCoins(const CAmount &nTargetValue,
                     // const uint256 hash = txfound->first;
                     CWalletTx &tx = txfound->second;
 
-                    LOG(SELECTCOINS, "CoinSelection: adding coincontrol selection valued at: %lu\n",
-                        tx.vout[outpt.n].nValue);
+                    //tx.vout[outpt.n].nValue
+                    CAmount outVal = tx.vout[outpt.n].GetValueWithInterest((chainActive.Height()+1)-tx.GetDepthInMainChain(),chainActive.Height()+1);
+                    LOG(SELECTCOINS, "CoinSelection: adding coincontrol selection valued at: %lu\n", outVal);
                     //? if (!out.fSpendable) continue;
-                    nValueRet += tx.vout[outpt.n].nValue;
+                    nValueRet += outVal;
                     // decrease the value we will auto-find by what the user hand-selected.
-                    tgtValue -= tx.vout[outpt.n].nValue;
+                    tgtValue -= outVal;
                     setCoinsRet.insert(make_pair(&tx, outpt.n));
                 }
                 else // TODO: Allow non-wallet inputs

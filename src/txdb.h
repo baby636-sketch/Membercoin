@@ -21,7 +21,7 @@ class CBlockFileInfo;
 class CBlockIndex;
 class uint256;
 
-static const bool DEFAULT_TXINDEX = false;
+static const bool DEFAULT_TXINDEX = true;
 
 //! The max allowed size of the in memory UTXO cache which can also be dynamically adjusted
 //! (if it has been configured) based on the current availability of memory.
