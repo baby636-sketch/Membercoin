@@ -90,7 +90,7 @@ public:
             .addArg("cpus=<n>", ::AllowedArgs::requiredInt,
                 _("Number of cpus to use for mining (default: 1). Value must be an integer"))
             .addArg("duration=<n>", ::AllowedArgs::requiredInt,
-                _("Number of seconds to mine a particular block candidate (default: 30). Value must be an integer"))
+                _("Number of seconds to mine a particular block candidate (default: 5). Value must be an integer"))
             .addArg("nblocks=<n>", ::AllowedArgs::requiredInt,
                 _("Number of blocks to mine (default: mine forever / -1). Value must be an integer"))
             .addArg("coinbasesize=<n>", ::AllowedArgs::requiredInt,
@@ -205,7 +205,7 @@ static bool CpuMineBlockHasher(CBlockHeader *pblock,
                 {
                     if (ntries-- < 1)
                     {
-                        pblock->nNonce = nNonce; // report the last nonce checked for accounting
+                        //pblock->nNonce = nNonce; // report the last nonce checked for accounting
                         return false; // Give up leave
                     }
                 }
@@ -411,7 +411,7 @@ int CpuMiner(void)
     std::uniform_int_distribution<uint32_t> uniformGen(0);
     auto randFunc = [&](void) -> uint32_t { return uniformGen(e1); };
 
-    int searchDuration = GetArg("-duration", 30);
+    int searchDuration = GetArg("-duration", 5);
     int nblocks = GetArg("-nblocks", -1); //-1 mine forever
     int coinbasesize = GetArg("-coinbasesize", 0);
     std::string address = GetArg("-address", "");
