@@ -67,9 +67,11 @@ cd depends
 make HOST=x86_64-w64-mingw32
 cd ..
 ./autogen.sh # not required when building from tarball
-CONFIG_SITE=$PWD/depends/x86_64-w64-mingw32/share/config.site ./configure --prefix=/ LDFLAGS="-Wl,-no-undefined" --disable-zmq --with-incompatible-bdb --disable-tests
+CONFIG_SITE=$PWD/depends/x86_64-w64-mingw32/share/config.site ./configure --prefix=/ --disable-zmq --with-incompatible-bdb --disable-tests -CFLAGS="msse4.1"
 make
 ```
+
+adding  LDFLAGS="-Wl,-no-undefined" to CONFIG_SITE above is occasionally helpful, occasionally not
 
 see https://unix.stackexchange.com/questions/410003/how-do-i-install-mingw-std-threads-on-ubuntu
 if problems with mutex. Choose '1' for posix

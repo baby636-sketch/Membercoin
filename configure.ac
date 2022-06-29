@@ -270,7 +270,9 @@ if test "x$enable_debug" = xyes; then
     fi
 fi
 
-CFLAGS="$CFLAGS -DBLAKE3_NO_SSE2 -DBLAKE3_NO_SSE41 -DBLAKE3_NO_AVX2 -DBLAKE3_NO_AVX512"
+CFLAGS="$CFLAGS -DBLAKE3_NO_AVX2 -DBLAKE3_NO_AVX512"
+##CFLAGS="$CFLAGS -DBLAKE3_NO_SSE2 -DBLAKE3_NO_SSE41 -DBLAKE3_NO_AVX2 -DBLAKE3_NO_AVX512"
+
 
 if test "x$enable_std_debug" = xyes; then
     CPPFLAGS="$CPPFLAGS -D_GLIBCXX_DEBUG -DGLIB_CXX_DEBUG_PEDANTIC"
@@ -303,7 +305,7 @@ if test "x$CXXFLAGS_overridden" = "xno"; then
 fi
 
 enable_hwcrc32=no
-enable_sse41=no
+enable_sse41=yes
 enable_avx2=yes
 
 if test "x$use_asm" = "xyes"; then

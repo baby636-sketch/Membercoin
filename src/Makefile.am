@@ -392,12 +392,6 @@ libbitcoincash_a_SOURCES = \
   primitives/block.h \
   primitives/transaction.cpp \
   primitives/transaction.h \
-  blake3/blake3.h \
-  blake3/blake3.c \
-  blake3/blake3_portable.c \
-  blake3/blake3_impl.h \
-  blake3/blake3_sse2.c \
-  blake3/blake3_dispatch.c \
   pubkey.cpp \
   pubkey.h \
   random.cpp \
@@ -455,7 +449,14 @@ crypto_libbitcoin_crypto_a_SOURCES = \
   crypto/sha256.cpp \
   crypto/sha256.h \
   crypto/sha512.cpp \
-  crypto/sha512.h
+  crypto/sha512.h \
+  blake3/blake3.h \
+  blake3/blake3.c \
+  blake3/blake3_portable.c \
+  blake3/blake3_impl.h \
+  blake3/blake3_sse2.c \
+  blake3/blake3_dispatch.c \
+  blake3/blake3_sse41.c
 
 if USE_ASM
 crypto_libbitcoin_crypto_a_SOURCES += crypto/sha256_sse4.cpp
@@ -493,12 +494,6 @@ libbitcoin_consensus_a_SOURCES = \
   prevector.h \
   primitives/block.cpp \
   primitives/block.h \
-  blake3/blake3.h \
-  blake3/blake3.c \
-  blake3/blake3_portable.c \
-  blake3/blake3_impl.h \
-  blake3/blake3_sse2.c \
-  blake3/blake3_dispatch.c \
   primitives/transaction.cpp \
   primitives/transaction.h \
   pubkey.cpp \
@@ -546,12 +541,6 @@ libbitcoin_common_a_SOURCES = \
   script/standard.cpp \
   versionbits.cpp \
   chain.cpp \
-  blake3/blake3.h \
-  blake3/blake3.c \
-  blake3/blake3_portable.c \
-  blake3/blake3_impl.h \
-  blake3/blake3_sse2.c \
-  blake3/blake3_dispatch.c \
   $(BITCOIN_CORE_H)
 
 # util: shared between all executables.
@@ -681,12 +670,6 @@ bitcoin_miner_SOURCES = bitcoin-miner.cpp \
   primitives/transaction.h \
   primitives/block.cpp \
   primitives/block.h \
-  blake3/blake3.h \
-  blake3/blake3.c \
-  blake3/blake3_portable.c \
-  blake3/blake3_impl.h \
-  blake3/blake3_sse2.c \
-  blake3/blake3_dispatch.c \
   uint256.cpp \
   uint256.h
 

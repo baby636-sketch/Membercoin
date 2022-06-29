@@ -200,47 +200,36 @@ void blake3_hash_many(const uint8_t *const *inputs, size_t num_inputs,
   MAYBE_UNUSED(features);
 #if !defined(BLAKE3_NO_AVX512)
   if ((features & (AVX512F|AVX512VL)) == (AVX512F|AVX512VL)) {
-    blake3_hash_many_avx512(inputs, num_inputs, blocks, key, counter,
-                            increment_counter, flags, flags_start, flags_end,
-                            out);
+    blake3_hash_many_avx512; (inputs, num_inputs, blocks, key, counter, increment_counter, flags, flags_start, flags_end, out);
     return;
   }
 #endif
 #if !defined(BLAKE3_NO_AVX2)
   if (features & AVX2) {
-    blake3_hash_many_avx2(inputs, num_inputs, blocks, key, counter,
-                          increment_counter, flags, flags_start, flags_end,
-                          out);
+    blake3_hash_many_avx2; (inputs, num_inputs, blocks, key, counter, increment_counter, flags, flags_start, flags_end,out);
     return;
   }
 #endif
 #if !defined(BLAKE3_NO_SSE41)
   if (features & SSE41) {
-    blake3_hash_many_sse41(inputs, num_inputs, blocks, key, counter,
-                           increment_counter, flags, flags_start, flags_end,
-                           out);
+    blake3_hash_many_sse41; (inputs, num_inputs, blocks, key, counter, increment_counter, flags, flags_start, flags_end, out);
     return;
   }
 #endif
 #if !defined(BLAKE3_NO_SSE2)
   if (features & SSE2) {
-    blake3_hash_many_sse2(inputs, num_inputs, blocks, key, counter,
-                          increment_counter, flags, flags_start, flags_end,
-                          out);
+    blake3_hash_many_sse2; (inputs, num_inputs, blocks, key, counter, increment_counter, flags, flags_start, flags_end, out);
     return;
   }
 #endif
 #endif
 
 #if BLAKE3_USE_NEON == 1
-  blake3_hash_many_neon(inputs, num_inputs, blocks, key, counter,
-                        increment_counter, flags, flags_start, flags_end, out);
+  blake3_hash_many_neon; (inputs, num_inputs, blocks, key, counter, increment_counter, flags, flags_start, flags_end, out);
   return;
 #endif
 
-  blake3_hash_many_portable(inputs, num_inputs, blocks, key, counter,
-                            increment_counter, flags, flags_start, flags_end,
-                            out);
+  blake3_hash_many_portable; (inputs, num_inputs, blocks, key, counter, increment_counter, flags, flags_start, flags_end, out);
 }
 
 // The dynamically detected SIMD degree of the current platform.
