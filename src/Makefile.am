@@ -456,7 +456,8 @@ crypto_libbitcoin_crypto_a_SOURCES = \
   blake3/blake3_impl.h \
   blake3/blake3_sse2.c \
   blake3/blake3_dispatch.c \
-  blake3/blake3_sse41.c
+  blake3/blake3_sse41.c \
+  blake3/blake3_avx2.c
 
 if USE_ASM
 crypto_libbitcoin_crypto_a_SOURCES += crypto/sha256_sse4.cpp

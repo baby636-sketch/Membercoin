@@ -310,10 +310,10 @@ just follow these steps. You will need to install `curl`.
 ```bash
 git clone https://github.com/BitcoinUnlimited/BitcoinUnlimited.git BU
 cd BU/depends
-make HOST=x86_64-pc-linux-gnu NO_QT=1 -j4
+make HOST=x86_64-pc-linux-gnu -j4
 cd ..
 ./autogen.sh
-./configure --prefix=$PWD/depends/x86_64-pc-linux-gnu --without-gui --disable-tests
+./configure --prefix=$PWD/depends/x86_64-pc-linux-gnu --disable-tests CFLAGS="-msse4.1 -mavx2"
 make -j4
 ```
 
